@@ -25,8 +25,9 @@ void loop() {
 }
 
 void displayString(int a, int b){
-  //for(y=0;y<5;y++){
-  PORTD = (dictionary[a][y]);
-  //}
+  for(y=0;y<5;y++){
+  PORTD = (dictionary[a][y]) + (dictionary[a][y]>>3);
+  delay(100);
+  }
 }
 
