@@ -10,12 +10,23 @@
 #define NUM8{B11100000,B10100000,B11100000,B10100000,B11100000}
 #define NUM9{B11100000,B10100000,B11100000,B00100000,B11100000}
 
-void setup() {
-  // put your setup code here, to run once:
+const int numPatterns = 2;
+int x, y;
+byte dictionary[11][5]={NUM0,NUM1,NUM2,NUM3,NUM4,NUM5,NUM6,NUM7,NUM8,NUM9,SPACE};
 
+void setup() {
+  DDRD=B11111111;
+  
+  
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
+  displayString(0,1);
 }
+
+void displayString(int a, int b){
+  //for(y=0;y<5;y++){
+  PORTD = (dictionary[a][y]);
+  //}
+}
+
