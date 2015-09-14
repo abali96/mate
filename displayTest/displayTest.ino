@@ -14,12 +14,14 @@
 #define NUM7{B11100000,B00100000,B00100000,B00100000,B00100000}
 #define NUM8{B11100000,B10100000,B11100000,B10100000,B11100000}
 #define NUM9{B11100000,B10100000,B11100000,B00100000,B11100000}
-//WEATHER SYMBOLS
+#define cloudLeft{B00000000,B00000000,B00111100,B01111100,B00111100}
+#define cloudRight{B01111000,B11111100,B01111000,B10000000,B00000000}
+#define cloudLeft2{B00000000,B00000100,B01111000,B11111100,B01111000}
+#define cloudRight2{B11110000,B11111000,B11110000,B00000000,B00000000}
 
-
-
-int x, y;
+int x, y, i;
 byte dictionary[11][5]={NUM0,NUM1,NUM2,NUM3,NUM4,NUM5,NUM6,NUM7,NUM8,NUM9,SPACE};
+byte weather[4][5]={cloudRight,cloudLeft,cloudRight2,cloudLeft2};
 
 void setup() {
   DDRA = B11111111;//set all of PORTA to output
@@ -32,8 +34,15 @@ void setup() {
 }
 
 void loop() {
-  //displayString(1,2,3,4);
-  displayWeather();
+  cloudy();
+  /*
+  for(int i; i < 1000; i++){
+  displayString(1,2,3,4);
+  }
+  for(int i; i < 100; i++){
+  rain();
+  }
+  */
 }
 
 void displayString(int a, int b, int c, int d){
@@ -49,19 +58,47 @@ void displayString(int a, int b, int c, int d){
     }
 }
 
-void displayWeather(){
-  raindrop(random(22,28));
-  raindrop(random(32,38));
-}
-
 void resetCounter(){
   digitalWrite(21,HIGH);
   digitalWrite(21,LOW);
-  for (int i = 0; i < 4; i++) {
+  for (i = 0; i < 4; i++) {
     digitalWrite(20, HIGH);
     digitalWrite(20, LOW);
   }
- }
+}
+
+void cloudy(){
+   for(i = 0; i < 100; i++){
+      for (y = 0; y < 5; y++) {
+        digitalWrite(20, HIGH);
+   
+        PORTA = (weather[0][y]>>2);//right side
+        PORTC = (weather[1][y]>>2);//left side
+        
+        delay(1);
+        digitalWrite(20, LOW);
+        delay(1);
+      }
+   }
+   for(i = 0; i < 100; i++){
+     for (y = 0; y < 5; y++) {
+        digitalWrite(20, HIGH);
+   
+        PORTA = (weather[2][y]>>2);//right side
+        PORTC = (weather[3][y]>>2);//left side
+        
+        delay(1);
+        digitalWrite(20, LOW);
+        delay(1);
+      }
+   }
+}
+
+void rain(){
+  ledClear();
+  raindrop(random(22,28));
+  raindrop(random(32,38));
+}
 
 void raindrop(int i){
  digitalWrite(i,HIGH);
@@ -69,8 +106,12 @@ void raindrop(int i){
       digitalWrite(20, HIGH);    
       delay(30);
       digitalWrite(20, LOW);
-      //delay(20);
   }
   digitalWrite(i,LOW); 
+}
+
+void ledClear(){
+  PORTA = B00000000;
+  PORTC = B00000000;
 }
 
