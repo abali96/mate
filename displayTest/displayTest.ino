@@ -14,14 +14,24 @@
 #define NUM7{B11100000,B00100000,B00100000,B00100000,B00100000}
 #define NUM8{B11100000,B10100000,B11100000,B10100000,B11100000}
 #define NUM9{B11100000,B10100000,B11100000,B00100000,B11100000}
-#define cloudLeft{B00000000,B00000000,B00111100,B01111100,B00111100}
-#define cloudRight{B01111000,B11111100,B01111000,B10000000,B00000000}
+#define cloudLeft1{B00000000,B00000000,B00111100,B01111100,B00111100}
+#define cloudRight2{B01111000,B11111100,B01111000,B10000000,B00000000}
 #define cloudLeft2{B00000000,B00000100,B01111000,B11111100,B01111000}
 #define cloudRight2{B11110000,B11111000,B11110000,B00000000,B00000000}
+#define sunLeft1{B00011100,B00111100,B00111100,B00111100,B00011100}
+#define sunRight1{B00000000,B10000000,B10000000,B10000000,B00000000}
+#define sunLeft2{B00001100,B00011100,B00011100,B00011100,B00001100}
+#define sunRight2{B10000000,B11000000,B11000000,B11000000,B10000000}
+#define sunLeft3{B00000100,B00001100,B00001100,B00001100,B00000100}
+#define sunRight3{B11000000,B11100000,B11100000,B11100000,B11000000}
+#define sunLeft4{B00000000,B00000100,B00000100,B00000100,B00000000}
+#define sunRight4{B11100000,B11110000,B11110000,B11110000,B11100000}
+#define sunLeft5{B00000000,B00000000,B00000000,B00000000,B00000000}
+#define sunRight5{B01110000,B11111000,B11111000,B11111000,B01110000}
 
 int x, y, i;
-byte dictionary[11][5]={NUM0,NUM1,NUM2,NUM3,NUM4,NUM5,NUM6,NUM7,NUM8,NUM9,SPACE};
-byte weather[4][5]={cloudRight,cloudLeft,cloudRight2,cloudLeft2};
+byte numberMap[11][5]={NUM0,NUM1,NUM2,NUM3,NUM4,NUM5,NUM6,NUM7,NUM8,NUM9,SPACE};
+byte weather[14][5]={cloudRight1,cloudLeft1,cloudRight2,cloudLeft2,sunLeft1,sunRight1,sunLeft2,sunRight2,sunLeft3,sunRight3,sunLeft4,sunRight4,sunLeft5,sunRight5};
 
 void setup() {
   DDRA = B11111111;//set all of PORTA to output
@@ -49,8 +59,8 @@ void displayString(int a, int b, int c, int d){
     for (y = 0; y < 5; y++) {
       digitalWrite(20, HIGH);
  
-      PORTA = (dictionary[c][y]>>2) + (dictionary[d][y] >> 5);//right side
-      PORTC = (dictionary[a][y]>>2) + (dictionary[b][y] >> 5);//left side
+      PORTA = (numberMap[c][y]>>2) + (numberMap[d][y] >> 5);//right side
+      PORTC = (numberMap[a][y]>>2) + (numberMap[b][y] >> 5);//left side
       
       delay(1);
       digitalWrite(20, LOW);
@@ -92,6 +102,9 @@ void cloudy(){
         delay(1);
       }
    }
+}
+
+void sunny(){//weather 4 through 13 
 }
 
 void rain(){
