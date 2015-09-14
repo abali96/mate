@@ -1,3 +1,8 @@
+
+//left half of LED matrix are pins 32-37
+//right half of LED matrix are pins 22-27
+
+//NUMBERS
 #define SPACE{B00000000,B00000000,B00000000,B00000000,B00000000}
 #define NUM0{B11100000,B10100000,B10100000,B10100000,B11100000}
 #define NUM1{B01000000,B01000000,B01000000,B01000000,B01000000}
@@ -9,6 +14,9 @@
 #define NUM7{B11100000,B00100000,B00100000,B00100000,B00100000}
 #define NUM8{B11100000,B10100000,B11100000,B10100000,B11100000}
 #define NUM9{B11100000,B10100000,B11100000,B00100000,B11100000}
+//WEATHER SYMBOLS
+
+
 
 int x, y;
 byte dictionary[11][5]={NUM0,NUM1,NUM2,NUM3,NUM4,NUM5,NUM6,NUM7,NUM8,NUM9,SPACE};
@@ -24,23 +32,26 @@ void setup() {
 }
 
 void loop() {
-  displayString(2,1,4,3);
-//  delay(1000);
-//  displayString(3,2);
-//  delay(1000);
+  //displayString(1,2,3,4);
+  displayWeather();
 }
 
 void displayString(int a, int b, int c, int d){
     for (y = 0; y < 5; y++) {
       digitalWrite(20, HIGH);
-      //PORTC = B10101000;
-   
-      PORTA = (dictionary[d][y]>>2) + (dictionary[c][y] >> 5);
-      PORTC = (dictionary[b][y]) + (dictionary[a][y] >> 3);
+ 
+      PORTA = (dictionary[c][y]>>2) + (dictionary[d][y] >> 5);//right side
+      PORTC = (dictionary[a][y]>>2) + (dictionary[b][y] >> 5);//left side
+      
       delay(1);
       digitalWrite(20, LOW);
       delay(1);
     }
+}
+
+void displayWeather(){
+  raindrop(random(22,28));
+  raindrop(random(32,38));
 }
 
 void resetCounter(){
@@ -50,5 +61,16 @@ void resetCounter(){
     digitalWrite(20, HIGH);
     digitalWrite(20, LOW);
   }
+ }
+
+void raindrop(int i){
+ digitalWrite(i,HIGH);
+  for (y = 0; y < 10; y++) {
+      digitalWrite(20, HIGH);    
+      delay(30);
+      digitalWrite(20, LOW);
+      //delay(20);
+  }
+  digitalWrite(i,LOW); 
 }
 
