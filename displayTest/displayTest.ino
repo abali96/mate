@@ -15,7 +15,7 @@
 #define NUM8{B11100000,B10100000,B11100000,B10100000,B11100000}
 #define NUM9{B11100000,B10100000,B11100000,B00100000,B11100000}
 #define cloudLeft1{B00000000,B00000000,B00111100,B01111100,B00111100}
-#define cloudRight2{B01111000,B11111100,B01111000,B10000000,B00000000}
+#define cloudRight1{B01111000,B11111100,B01111000,B10000000,B00000000}
 #define cloudLeft2{B00000000,B00000100,B01111000,B11111100,B01111000}
 #define cloudRight2{B11110000,B11111000,B11110000,B00000000,B00000000}
 #define sunLeft1{B00011100,B00111100,B00111100,B00111100,B00011100}
@@ -29,9 +29,11 @@
 #define sunLeft5{B00000000,B00000000,B00000000,B00000000,B00000000}
 #define sunRight5{B01110000,B11111000,B11111000,B11111000,B01110000}
 
-int x, y, i;
+int x, y, i, weather; 
+bool mode;// 1 is time, 0 is weather
+
 byte numberMap[11][5]={NUM0,NUM1,NUM2,NUM3,NUM4,NUM5,NUM6,NUM7,NUM8,NUM9,SPACE};
-byte weather[14][5]={cloudRight1,cloudLeft1,cloudRight2,cloudLeft2,sunLeft1,sunRight1,sunLeft2,sunRight2,sunLeft3,sunRight3,sunLeft4,sunRight4,sunLeft5,sunRight5};
+byte weatherMap[14][5]={cloudRight1,cloudLeft1,cloudRight2,cloudLeft2,sunLeft1,sunRight1,sunLeft2,sunRight2,sunLeft3,sunRight3,sunLeft4,sunRight4,sunLeft5,sunRight5};
 
 void setup() {
   DDRA = B11111111;//set all of PORTA to output
@@ -40,6 +42,7 @@ void setup() {
   pinMode(20,OUTPUT);
   pinMode(21,OUTPUT);
   resetCounter();
+  mode = 1;
   
 }
 
@@ -55,8 +58,13 @@ void loop() {
       }
 
       Serial.println(time_int);
-      while (Serial1.available() == 1) {
-        displayString((int)time_int[0],(int)time_int[1],(int)time_int[2],(int)time_int[3]);
+      while (Serial1.available() == 1) {//the one byte left in serial1 buffer is 'a' delim token
+        if(mode){
+          displayString((int)time_int[0],(int)time_int[1],(int)time_int[2],(int)time_int[3]);
+        }
+        else{
+          displayWeather(weather);
+        }
       }
     }
   }
@@ -71,8 +79,8 @@ void displayString(int a, int b, int c, int d){
     for (y = 0; y < 5; y++) {
       digitalWrite(20, HIGH);
  
-      PORTA = (dictionary[c][y]>>2) + (dictionary[d][y] >> 5);//right side
-      PORTC = (dictionary[a][y]>>2) + (dictionary[b][y] >> 5);//left side
+      PORTA = (numberMap[c][y]>>2) + (numberMap[d][y] >> 5);//right side
+      PORTC = (numberMap[a][y]>>2) + (numberMap[b][y] >> 5);//left side
       
       delay(1);
       digitalWrite(20, LOW);
@@ -89,13 +97,38 @@ void resetCounter(){
   }
 }
 
-void cloudy(){
+void displayWeather(int weather){//sun, cloud, rain, thunder, snow
+    switch(weather){
+      case 0:
+        sun();
+      break;
+      case 1:
+        clouds();
+      break;
+      case 2:
+        rain();
+      break;
+      case 3:
+        thunder();
+      break;
+      case 4:
+        snow();
+      break;
+      //default: default weather?
+      //break;
+    }
+}
+
+void sun(){//weather 4 through 13 
+}
+
+void clouds(){
    for(i = 0; i < 100; i++){
       for (y = 0; y < 5; y++) {
         digitalWrite(20, HIGH);
    
-        PORTA = (weather[0][y]>>2);//right side
-        PORTC = (weather[1][y]>>2);//left side
+        PORTA = (weatherMap[0][y]>>2);//right side
+        PORTC = (weatherMap[1][y]>>2);//left side
         
         delay(1);
         digitalWrite(20, LOW);
@@ -106,17 +139,14 @@ void cloudy(){
      for (y = 0; y < 5; y++) {
         digitalWrite(20, HIGH);
    
-        PORTA = (weather[2][y]>>2);//right side
-        PORTC = (weather[3][y]>>2);//left side
+        PORTA = (weatherMap[2][y]>>2);//right side
+        PORTC = (weatherMap[3][y]>>2);//left side
         
         delay(1);
         digitalWrite(20, LOW);
         delay(1);
       }
    }
-}
-
-void sunny(){//weather 4 through 13 
 }
 
 void rain(){
@@ -134,6 +164,10 @@ void raindrop(int i){
   }
   digitalWrite(i,LOW); 
 }
+
+void thunder(){}
+
+void snow(){}
 
 void ledClear(){
   PORTA = B00000000;
