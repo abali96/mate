@@ -67,17 +67,17 @@ void displayString(int a, int b, int c, int d){
   b -= 48;
   c -= 48;
   d -= 48;
-  
-    for (y = 0; y < 5; y++) {
-      digitalWrite(20, HIGH);
- 
-      PORTA = (dictionary[c][y]>>2) + (dictionary[d][y] >> 5);//right side
-      PORTC = (dictionary[a][y]>>2) + (dictionary[b][y] >> 5);//left side
-      
-      delay(1);
-      digitalWrite(20, LOW);
-      delay(1);
-    }
+
+  for (y = 0; y < 5; y++) {
+    digitalWrite(20, HIGH);
+
+    PORTA = (dictionary[c][y]>>2) + (dictionary[d][y] >> 5);//right side
+    PORTC = (dictionary[a][y]>>2) + (dictionary[b][y] >> 5);//left side
+    
+    delay(1);
+    digitalWrite(20, LOW);
+    delay(1);
+  }
 }
 
 void resetCounter(){
