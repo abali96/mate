@@ -44,23 +44,35 @@ void setup() {
 }
 
 void loop() {
-  cloudy();
-  /*
-  for(int i; i < 1000; i++){
-  displayString(1,2,3,4);
+  int avail_count = Serial1.available();  
+  if (avail_count > 0) { // we have found something to read
+    if ((char)Serial1.read() == 't') {
+      Serial.println("here");
+      String time_int = (String)Serial1.parseInt();
+      
+      for (int i = 0; i = 4 - time_int.length(); i++) {
+        time_int = "0" + time_int;
+      }
+
+      Serial.println(time_int);
+      while (Serial1.available() == 1) {
+        displayString((int)time_int[0],(int)time_int[1],(int)time_int[2],(int)time_int[3]);
+      }
+    }
   }
-  for(int i; i < 100; i++){
-  rain();
-  }
-  */
 }
 
 void displayString(int a, int b, int c, int d){
+  a -= 48;
+  b -= 48;
+  c -= 48;
+  d -= 48;
+  
     for (y = 0; y < 5; y++) {
       digitalWrite(20, HIGH);
  
-      PORTA = (numberMap[c][y]>>2) + (numberMap[d][y] >> 5);//right side
-      PORTC = (numberMap[a][y]>>2) + (numberMap[b][y] >> 5);//left side
+      PORTA = (dictionary[c][y]>>2) + (dictionary[d][y] >> 5);//right side
+      PORTC = (dictionary[a][y]>>2) + (dictionary[b][y] >> 5);//left side
       
       delay(1);
       digitalWrite(20, LOW);
