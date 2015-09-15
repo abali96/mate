@@ -18,35 +18,36 @@
 #define cloudRight1{B01111000,B11111100,B01111000,B10000000,B00000000}
 #define cloudLeft2{B00000000,B00000100,B01111000,B11111100,B01111000}
 #define cloudRight2{B11110000,B11111000,B11110000,B00000000,B00000000}
-#define sunLeft1{B00011100,B00111100,B00111100,B00111100,B00011100}
-#define sunRight1{B00000000,B10000000,B10000000,B10000000,B00000000}
-#define sunLeft2{B00001100,B00011100,B00011100,B00011100,B00001100}
-#define sunRight2{B10000000,B11000000,B11000000,B11000000,B10000000}
-#define sunLeft3{B00000100,B00001100,B00001100,B00001100,B00000100}
-#define sunRight3{B11000000,B11100000,B11100000,B11100000,B11000000}
-#define sunLeft4{B00000000,B00000100,B00000100,B00000100,B00000000}
-#define sunRight4{B11100000,B11110000,B11110000,B11110000,B11100000}
-#define sunLeft5{B00000000,B00000000,B00000000,B00000000,B00000000}
-#define sunRight5{B01110000,B11111000,B11111000,B11111000,B01110000}
+#define sunLeft{B00000100,B00001100,B00001100,B00001100,B00000100}
+#define sunRight{B11000000,B11100000,B11100000,B11100000,B11000000}
+
 
 int x, y, i, weather; 
-bool mode;// 1 is time, 0 is weather
+volatile bool mode;// 1 is time, 0 is weather
 
 byte numberMap[11][5]={NUM0,NUM1,NUM2,NUM3,NUM4,NUM5,NUM6,NUM7,NUM8,NUM9,SPACE};
-byte weatherMap[14][5]={cloudRight1,cloudLeft1,cloudRight2,cloudLeft2,sunLeft1,sunRight1,sunLeft2,sunRight2,sunLeft3,sunRight3,sunLeft4,sunRight4,sunLeft5,sunRight5};
+byte weatherMap[14][5]={cloudRight1,cloudLeft1,cloudRight2,cloudLeft2,sunLeft,sunRight};
 
 void setup() {
   DDRA = B11111111;//set all of PORTA to output
   DDRC = B11111111;//set all of PORTC to output
-  
+  Serial.begin(9600);
   pinMode(20,OUTPUT);
   pinMode(21,OUTPUT);
   resetCounter();
   mode = 1;
-  
+
+  pinMode(3, INPUT);
+  digitalWrite(3,HIGH);
+  attachInterrupt(digitalPinToInterrupt(3), modeISR, RISING);
 }
 
 void loop() {
+  if(mode)
+    displayString(8,8,8,8);
+  else {
+    sun();
+  }
   int avail_count = Serial1.available();  
   if (avail_count > 0) { // we have found something to read
     if ((char)Serial1.read() == 't') {
@@ -70,11 +71,18 @@ void loop() {
   }
 }
 
+void modeISR(){
+  detachInterrupt(digitalPinToInterrupt(3));
+  mode = !mode;
+  Serial.println(mode);
+  attachInterrupt(digitalPinToInterrupt(3), modeISR, RISING);
+}
+
 void displayString(int a, int b, int c, int d){
-  a -= 48;
-  b -= 48;
-  c -= 48;
-  d -= 48;
+//  a -= 48;
+//  b -= 48;
+//  c -= 48;
+//  d -= 48;
   
     for (y = 0; y < 5; y++) {
       digitalWrite(20, HIGH);
@@ -119,34 +127,28 @@ void displayWeather(int weather){//sun, cloud, rain, thunder, snow
     }
 }
 
-void sun(){//weather 4 through 13 
-}
-
-void clouds(){
-   for(i = 0; i < 100; i++){
+void displayImage(int a, int b, int t){// a is right side, b is left side, t is time
+  for(i = 0; i < t; i++){
       for (y = 0; y < 5; y++) {
         digitalWrite(20, HIGH);
    
-        PORTA = (weatherMap[0][y]>>2);//right side
-        PORTC = (weatherMap[1][y]>>2);//left side
+        PORTA = (weatherMap[a][y]>>2);//right side
+        PORTC = (weatherMap[b][y]>>2);//left side
         
         delay(1);
         digitalWrite(20, LOW);
         delay(1);
       }
    }
-   for(i = 0; i < 100; i++){
-     for (y = 0; y < 5; y++) {
-        digitalWrite(20, HIGH);
-   
-        PORTA = (weatherMap[2][y]>>2);//right side
-        PORTC = (weatherMap[3][y]>>2);//left side
-        
-        delay(1);
-        digitalWrite(20, LOW);
-        delay(1);
-      }
-   }
+}
+
+void sun(){
+   displayImage(5,4,100);
+}
+
+void clouds(){
+   displayImage(0,1,100);
+   displayImage(2,3,100);
 }
 
 void rain(){
