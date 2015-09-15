@@ -20,6 +20,7 @@
 #define cloudRight2{B11110000,B11111000,B11110000,B00000000,B00000000}
 #define sunLeft{B00000100,B00001100,B00001100,B00001100,B00000100}
 #define sunRight{B11000000,B11100000,B11100000,B11100000,B11000000}
+//LIGHTNING LEFT AND RIGHT, TODO
 
 
 int x, y, i, weather; 
@@ -43,29 +44,27 @@ void setup() {
 }
 
 void loop() {
-  if(mode)
-    displayString(8,8,8,8);
-  else {
-    sun();
-  }
   int avail_count = Serial1.available();  
+  String time_int = "0000";
   if (avail_count > 0) { // we have found something to read
-    if ((char)Serial1.read() == 't') {
+    Serial.println("here");
+    char datatype = (char)Serial1.read();
+    if (datatype == 't') {
       Serial.println("here");
-      String time_int = (String)Serial1.parseInt();
-      
+      time_int = (String)Serial1.parseInt();
+     
       for (int i = 0; i = 4 - time_int.length(); i++) {
         time_int = "0" + time_int;
       }
-
-      Serial.println(time_int);
-      while (Serial1.available() == 1) {//the one byte left in serial1 buffer is 'a' delim token
-        if(mode){
-          displayString((int)time_int[0],(int)time_int[1],(int)time_int[2],(int)time_int[3]);
-        }
-        else{
-          displayWeather(weather);
-        }
+    } else if (datatype == 'w') {
+      weather = (int)(char)(Serial1.read()) - 48;
+    }
+    while (Serial1.available() == 1) {//the one byte left in serial1 buffer is 'a' delim token
+      if(mode){
+        displayString((int)time_int[0],(int)time_int[1],(int)time_int[2],(int)time_int[3]);
+      }
+      else{
+        displayWeather(weather);
       }
     }
   }
