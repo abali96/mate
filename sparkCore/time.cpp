@@ -1,20 +1,10 @@
 #include "SparkTime.h"
-#include "HttpClient.h"
 
 UDP UDPClient;
 SparkTime rtc;
 unsigned long currentTime;
 unsigned long lastTime = 0UL;
 String timeStr;
-
-HttpClient http;
-http_header_t headers[] = {
-	{"Accept", "*/*"},
-	{"Accept", "*/*"}
-};
-
-http_request_t request;
-http_response_t response;
 
 void sendData(String time) {
 	int length = time.length();
@@ -29,9 +19,39 @@ void sendData(String time) {
 	Serial.println("A");
 }
 
+void parseWeather(const char *name, const char *data) {
+	Serial1.write("w");
+	Serial.println("w");
+	String json = String(data);
+	int index = json.indexOf("\"id\":");
+	String weather_code_str = json.substring(index+5, index+8);
+	int weather_code = atoi(weather_code_str);
+	if (weather_code <= 232) {
+		Serial1.write("3");
+		Serial.println("3");
+	} else if (weather_code <= 522) {
+		Serial1.write("2");
+		Serial.println("2");
+	} else if (weather_code <= 621) {
+		Serial1.write("4");
+		Serial.println("4");
+	} else if (weather_code <= 801) {
+		Serial1.write("0");
+		Serial.println("0");
+	} else if (weather_code <= 804) {
+		Serial1.write("1");
+		Serial.println("1");
+	}
+	Serial1.write("A");
+	Serial.println("A");
+	Serial.println("weather!");
+}
+
 void setup() {
 	rtc.begin(&UDPClient, "north-america.pool.ntp.org");
 	rtc.setTimeZone(-5);
+
+	Spark.subscribe("hook-response/get_weather", parseWeather, MY_DEVICES);
 
 	Serial.begin(9600);
 	Serial1.begin(9600);
@@ -39,44 +59,30 @@ void setup() {
 }
 
 void loop() {
-	request.hostname = "www.timeapi.org";
-	request.port = 80;
-	request.path = "/utc/now";
-
-	// The library also supports sending a body with your request:
-	//request.body = "{\"key\":\"value\"}";
-
-	// Get request
-	http.get(request, response, headers);
-	Serial.print("Application>\tResponse status: ");
-	Serial.println(response.status);
-
-	Serial.print("Application>\tHTTP Response Body: ");
-	Serial.println(response.body);
-
-
-
-	// currentTime = rtc.now();
-	// String timeData = "";
-	// timeData += rtc.hourString(currentTime);
-	// timeData += rtc.minuteString(currentTime);
-	// Serial.println(timeData);
-	// sendData(timeData);
-	//
-	// Serial1.write("t");
-	// String hour = rtc.hourString(currentTime);
-	// for (int i = 0; i < hour.length(); i++) {
-	// 	Serial.println(hour[i]);
-	// 	Serial1.write(hour[i]);
-	// }
-	// String minute = rtc.minuteString(currentTime);
-	// for (int i = 0; i < minute.length(); i++) {
-	// 	Serial.println(minute[i]);
-	// 	Serial1.write(minute[i]);
-	// }
-	// Serial1.write("A");
-	//
-	// delay(500);
+	// Spark.publish("get_weather");
 	// Serial.println("work!");
-	// delay(100);
+	// delay(5000);
+	currentTime = rtc.now();
+	String timeData = "";
+	timeData += rtc.hourString(currentTime);
+	timeData += rtc.minuteString(currentTime);
+	Serial.println(timeData);
+	sendData(timeData);
+
+	Serial1.write("t");
+	String hour = rtc.hourString(currentTime);
+	for (int i = 0; i < hour.length(); i++) {
+		Serial.println(hour[i]);
+		Serial1.write(hour[i]);
+	}
+	String minute = rtc.minuteString(currentTime);
+	for (int i = 0; i < minute.length(); i++) {
+		Serial.println(minute[i]);
+		Serial1.write(minute[i]);
+	}
+	Serial1.write("A");
+
+	delay(500);
+	Serial.println("work!");
+	delay(100);
 }
