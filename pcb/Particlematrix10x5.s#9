@@ -4416,6 +4416,8 @@ Source: http://www.osram.convergy.de/</description>
 <part name="LED8" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED9" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED10" library="adafruit" deviceset="LED" device="5MM"/>
+<part name="1" library="adafruit" deviceset="LED" device="5MM"/>
+<part name="2" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED13" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED14" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED15" library="adafruit" deviceset="LED" device="5MM"/>
@@ -4426,6 +4428,8 @@ Source: http://www.osram.convergy.de/</description>
 <part name="LED20" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED21" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED22" library="adafruit" deviceset="LED" device="5MM"/>
+<part name="LED23" library="adafruit" deviceset="LED" device="5MM"/>
+<part name="LED24" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED25" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED26" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED27" library="adafruit" deviceset="LED" device="5MM"/>
@@ -4436,6 +4440,8 @@ Source: http://www.osram.convergy.de/</description>
 <part name="LED32" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED33" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED34" library="adafruit" deviceset="LED" device="5MM"/>
+<part name="LED35" library="adafruit" deviceset="LED" device="5MM"/>
+<part name="LED36" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED37" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED38" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED39" library="adafruit" deviceset="LED" device="5MM"/>
@@ -4446,25 +4452,19 @@ Source: http://www.osram.convergy.de/</description>
 <part name="LED44" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED45" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED46" library="adafruit" deviceset="LED" device="5MM"/>
+<part name="LED47" library="adafruit" deviceset="LED" device="5MM"/>
+<part name="LED48" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED49" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED50" library="adafruit" deviceset="LED" device="5MM"/>
-<part name="LED51" library="adafruit" deviceset="LED" device="5MM"/>
+<part name="LED11" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED52" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED53" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED54" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED55" library="adafruit" deviceset="LED" device="5MM"/>
-<part name="LED56" library="adafruit" deviceset="LED" device="5MM"/>
+<part name="LED12" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED57" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED58" library="adafruit" deviceset="LED" device="5MM"/>
-<part name="LED11" library="adafruit" deviceset="LED" device="5MM"/>
-<part name="LED23" library="adafruit" deviceset="LED" device="5MM"/>
-<part name="LED35" library="adafruit" deviceset="LED" device="5MM"/>
-<part name="LED47" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED59" library="adafruit" deviceset="LED" device="5MM"/>
-<part name="LED12" library="adafruit" deviceset="LED" device="5MM"/>
-<part name="LED24" library="adafruit" deviceset="LED" device="5MM"/>
-<part name="LED36" library="adafruit" deviceset="LED" device="5MM"/>
-<part name="LED48" library="adafruit" deviceset="LED" device="5MM"/>
 <part name="LED60" library="adafruit" deviceset="LED" device="5MM"/>
 </parts>
 <sheets>
@@ -4487,55 +4487,55 @@ Source: http://www.osram.convergy.de/</description>
 <instance part="LED8" gate="G$1" x="190.5" y="134.62"/>
 <instance part="LED9" gate="G$1" x="200.66" y="134.62"/>
 <instance part="LED10" gate="G$1" x="210.82" y="134.62"/>
-<instance part="LED13" gate="G$1" x="119.38" y="119.38"/>
-<instance part="LED14" gate="G$1" x="129.54" y="119.38"/>
-<instance part="LED15" gate="G$1" x="139.7" y="119.38"/>
-<instance part="LED16" gate="G$1" x="149.86" y="119.38"/>
-<instance part="LED17" gate="G$1" x="160.02" y="119.38"/>
-<instance part="LED18" gate="G$1" x="170.18" y="119.38"/>
-<instance part="LED19" gate="G$1" x="180.34" y="119.38"/>
-<instance part="LED20" gate="G$1" x="190.5" y="119.38"/>
-<instance part="LED21" gate="G$1" x="200.66" y="119.38"/>
-<instance part="LED22" gate="G$1" x="210.82" y="119.38"/>
-<instance part="LED25" gate="G$1" x="119.38" y="104.14"/>
-<instance part="LED26" gate="G$1" x="129.54" y="104.14"/>
-<instance part="LED27" gate="G$1" x="139.7" y="104.14"/>
-<instance part="LED28" gate="G$1" x="149.86" y="104.14"/>
-<instance part="LED29" gate="G$1" x="160.02" y="104.14"/>
-<instance part="LED30" gate="G$1" x="170.18" y="104.14"/>
-<instance part="LED31" gate="G$1" x="180.34" y="104.14"/>
-<instance part="LED32" gate="G$1" x="190.5" y="104.14"/>
-<instance part="LED33" gate="G$1" x="200.66" y="104.14"/>
-<instance part="LED34" gate="G$1" x="210.82" y="104.14"/>
-<instance part="LED37" gate="G$1" x="119.38" y="88.9"/>
-<instance part="LED38" gate="G$1" x="129.54" y="88.9"/>
-<instance part="LED39" gate="G$1" x="139.7" y="88.9"/>
-<instance part="LED40" gate="G$1" x="149.86" y="88.9"/>
-<instance part="LED41" gate="G$1" x="160.02" y="88.9"/>
-<instance part="LED42" gate="G$1" x="170.18" y="88.9"/>
-<instance part="LED43" gate="G$1" x="180.34" y="88.9"/>
-<instance part="LED44" gate="G$1" x="190.5" y="88.9"/>
-<instance part="LED45" gate="G$1" x="200.66" y="88.9"/>
-<instance part="LED46" gate="G$1" x="210.82" y="88.9"/>
-<instance part="LED49" gate="G$1" x="119.38" y="73.66"/>
-<instance part="LED50" gate="G$1" x="129.54" y="73.66"/>
-<instance part="LED51" gate="G$1" x="139.7" y="73.66"/>
-<instance part="LED52" gate="G$1" x="149.86" y="73.66"/>
-<instance part="LED53" gate="G$1" x="160.02" y="73.66"/>
-<instance part="LED54" gate="G$1" x="170.18" y="73.66"/>
-<instance part="LED55" gate="G$1" x="180.34" y="73.66"/>
-<instance part="LED56" gate="G$1" x="190.5" y="73.66"/>
-<instance part="LED57" gate="G$1" x="200.66" y="73.66"/>
-<instance part="LED58" gate="G$1" x="210.82" y="73.66"/>
+<instance part="1" gate="G$1" x="119.38" y="119.38"/>
+<instance part="2" gate="G$1" x="129.54" y="119.38"/>
+<instance part="LED13" gate="G$1" x="139.7" y="119.38"/>
+<instance part="LED14" gate="G$1" x="149.86" y="119.38"/>
+<instance part="LED15" gate="G$1" x="160.02" y="119.38"/>
+<instance part="LED16" gate="G$1" x="170.18" y="119.38"/>
+<instance part="LED17" gate="G$1" x="180.34" y="119.38"/>
+<instance part="LED18" gate="G$1" x="190.5" y="119.38"/>
+<instance part="LED19" gate="G$1" x="200.66" y="119.38"/>
+<instance part="LED20" gate="G$1" x="210.82" y="119.38"/>
+<instance part="LED21" gate="G$1" x="119.38" y="104.14"/>
+<instance part="LED22" gate="G$1" x="129.54" y="104.14"/>
+<instance part="LED23" gate="G$1" x="139.7" y="104.14"/>
+<instance part="LED24" gate="G$1" x="149.86" y="104.14"/>
+<instance part="LED25" gate="G$1" x="160.02" y="104.14"/>
+<instance part="LED26" gate="G$1" x="170.18" y="104.14"/>
+<instance part="LED27" gate="G$1" x="180.34" y="104.14"/>
+<instance part="LED28" gate="G$1" x="190.5" y="104.14"/>
+<instance part="LED29" gate="G$1" x="200.66" y="104.14"/>
+<instance part="LED30" gate="G$1" x="210.82" y="104.14"/>
+<instance part="LED31" gate="G$1" x="119.38" y="88.9"/>
+<instance part="LED32" gate="G$1" x="129.54" y="88.9"/>
+<instance part="LED33" gate="G$1" x="139.7" y="88.9"/>
+<instance part="LED34" gate="G$1" x="149.86" y="88.9"/>
+<instance part="LED35" gate="G$1" x="160.02" y="88.9"/>
+<instance part="LED36" gate="G$1" x="170.18" y="88.9"/>
+<instance part="LED37" gate="G$1" x="180.34" y="88.9"/>
+<instance part="LED38" gate="G$1" x="190.5" y="88.9"/>
+<instance part="LED39" gate="G$1" x="200.66" y="88.9"/>
+<instance part="LED40" gate="G$1" x="210.82" y="88.9"/>
+<instance part="LED41" gate="G$1" x="119.38" y="73.66"/>
+<instance part="LED42" gate="G$1" x="129.54" y="73.66"/>
+<instance part="LED43" gate="G$1" x="139.7" y="73.66"/>
+<instance part="LED44" gate="G$1" x="149.86" y="73.66"/>
+<instance part="LED45" gate="G$1" x="160.02" y="73.66"/>
+<instance part="LED46" gate="G$1" x="170.18" y="73.66"/>
+<instance part="LED47" gate="G$1" x="180.34" y="73.66"/>
+<instance part="LED48" gate="G$1" x="190.5" y="73.66"/>
+<instance part="LED49" gate="G$1" x="200.66" y="73.66"/>
+<instance part="LED50" gate="G$1" x="210.82" y="73.66"/>
 <instance part="LED11" gate="G$1" x="220.98" y="134.62"/>
-<instance part="LED23" gate="G$1" x="220.98" y="119.38"/>
-<instance part="LED35" gate="G$1" x="220.98" y="104.14"/>
-<instance part="LED47" gate="G$1" x="220.98" y="88.9"/>
-<instance part="LED59" gate="G$1" x="220.98" y="73.66"/>
+<instance part="LED52" gate="G$1" x="220.98" y="119.38"/>
+<instance part="LED53" gate="G$1" x="220.98" y="104.14"/>
+<instance part="LED54" gate="G$1" x="220.98" y="88.9"/>
+<instance part="LED55" gate="G$1" x="220.98" y="73.66"/>
 <instance part="LED12" gate="G$1" x="231.14" y="134.62"/>
-<instance part="LED24" gate="G$1" x="231.14" y="119.38"/>
-<instance part="LED36" gate="G$1" x="231.14" y="104.14"/>
-<instance part="LED48" gate="G$1" x="231.14" y="88.9"/>
+<instance part="LED57" gate="G$1" x="231.14" y="119.38"/>
+<instance part="LED58" gate="G$1" x="231.14" y="104.14"/>
+<instance part="LED59" gate="G$1" x="231.14" y="88.9"/>
 <instance part="LED60" gate="G$1" x="231.14" y="73.66"/>
 </instances>
 <busses>
@@ -4565,13 +4565,13 @@ Source: http://www.osram.convergy.de/</description>
 <wire x1="119.38" y1="78.74" x2="119.38" y2="76.2" width="0.1524" layer="91"/>
 <junction x="124.46" y="93.98"/>
 <pinref part="LED1" gate="G$1" pin="A"/>
-<pinref part="LED13" gate="G$1" pin="A"/>
-<pinref part="LED25" gate="G$1" pin="A"/>
-<pinref part="LED37" gate="G$1" pin="A"/>
-<pinref part="LED49" gate="G$1" pin="A"/>
+<pinref part="1" gate="G$1" pin="A"/>
+<pinref part="LED21" gate="G$1" pin="A"/>
+<pinref part="LED31" gate="G$1" pin="A"/>
+<pinref part="LED41" gate="G$1" pin="A"/>
 </segment>
 </net>
-<net name="COL2" class="0">
+<net name="1" class="0">
 <segment>
 <wire x1="134.62" y1="139.7" x2="134.62" y2="124.46" width="0.1524" layer="91"/>
 <wire x1="134.62" y1="124.46" x2="134.62" y2="109.22" width="0.1524" layer="91"/>
@@ -4595,10 +4595,10 @@ Source: http://www.osram.convergy.de/</description>
 <wire x1="129.54" y1="78.74" x2="129.54" y2="76.2" width="0.1524" layer="91"/>
 <junction x="134.62" y="93.98"/>
 <pinref part="LED2" gate="G$1" pin="A"/>
-<pinref part="LED14" gate="G$1" pin="A"/>
-<pinref part="LED26" gate="G$1" pin="A"/>
-<pinref part="LED38" gate="G$1" pin="A"/>
-<pinref part="LED50" gate="G$1" pin="A"/>
+<pinref part="2" gate="G$1" pin="A"/>
+<pinref part="LED22" gate="G$1" pin="A"/>
+<pinref part="LED32" gate="G$1" pin="A"/>
+<pinref part="LED42" gate="G$1" pin="A"/>
 </segment>
 </net>
 <net name="COL3" class="0">
@@ -4625,10 +4625,10 @@ Source: http://www.osram.convergy.de/</description>
 <wire x1="139.7" y1="78.74" x2="139.7" y2="76.2" width="0.1524" layer="91"/>
 <junction x="144.78" y="93.98"/>
 <pinref part="LED3" gate="G$1" pin="A"/>
-<pinref part="LED15" gate="G$1" pin="A"/>
-<pinref part="LED27" gate="G$1" pin="A"/>
-<pinref part="LED39" gate="G$1" pin="A"/>
-<pinref part="LED51" gate="G$1" pin="A"/>
+<pinref part="LED13" gate="G$1" pin="A"/>
+<pinref part="LED23" gate="G$1" pin="A"/>
+<pinref part="LED33" gate="G$1" pin="A"/>
+<pinref part="LED43" gate="G$1" pin="A"/>
 </segment>
 </net>
 <net name="ROW1" class="0">
@@ -4670,6 +4670,8 @@ Source: http://www.osram.convergy.de/</description>
 <wire x1="210.82" y1="111.76" x2="200.66" y2="111.76" width="0.1524" layer="91"/>
 <junction x="200.66" y="111.76"/>
 <junction x="190.5" y="111.76"/>
+<pinref part="1" gate="G$1" pin="C"/>
+<pinref part="2" gate="G$1" pin="C"/>
 <pinref part="LED13" gate="G$1" pin="C"/>
 <pinref part="LED14" gate="G$1" pin="C"/>
 <pinref part="LED15" gate="G$1" pin="C"/>
@@ -4678,13 +4680,11 @@ Source: http://www.osram.convergy.de/</description>
 <pinref part="LED18" gate="G$1" pin="C"/>
 <pinref part="LED19" gate="G$1" pin="C"/>
 <pinref part="LED20" gate="G$1" pin="C"/>
-<pinref part="LED21" gate="G$1" pin="C"/>
-<pinref part="LED22" gate="G$1" pin="C"/>
-<pinref part="LED23" gate="G$1" pin="C"/>
+<pinref part="LED52" gate="G$1" pin="C"/>
 <wire x1="210.82" y1="111.76" x2="220.98" y2="111.76" width="0.1524" layer="91"/>
 <wire x1="220.98" y1="111.76" x2="220.98" y2="114.3" width="0.1524" layer="91"/>
 <junction x="210.82" y="111.76"/>
-<pinref part="LED24" gate="G$1" pin="C"/>
+<pinref part="LED57" gate="G$1" pin="C"/>
 <wire x1="231.14" y1="114.3" x2="231.14" y2="111.76" width="0.1524" layer="91"/>
 <wire x1="231.14" y1="111.76" x2="220.98" y2="111.76" width="0.1524" layer="91"/>
 <junction x="220.98" y="111.76"/>
@@ -4722,21 +4722,21 @@ Source: http://www.osram.convergy.de/</description>
 <wire x1="210.82" y1="96.52" x2="210.82" y2="99.06" width="0.1524" layer="91"/>
 <junction x="200.66" y="96.52"/>
 <junction x="190.5" y="96.52"/>
+<pinref part="LED21" gate="G$1" pin="C"/>
+<pinref part="LED22" gate="G$1" pin="C"/>
+<pinref part="LED23" gate="G$1" pin="C"/>
+<pinref part="LED24" gate="G$1" pin="C"/>
 <pinref part="LED25" gate="G$1" pin="C"/>
-<pinref part="LED26" gate="G$1" pin="C"/>
 <pinref part="LED27" gate="G$1" pin="C"/>
+<pinref part="LED26" gate="G$1" pin="C"/>
 <pinref part="LED28" gate="G$1" pin="C"/>
 <pinref part="LED29" gate="G$1" pin="C"/>
-<pinref part="LED31" gate="G$1" pin="C"/>
 <pinref part="LED30" gate="G$1" pin="C"/>
-<pinref part="LED32" gate="G$1" pin="C"/>
-<pinref part="LED33" gate="G$1" pin="C"/>
-<pinref part="LED34" gate="G$1" pin="C"/>
-<pinref part="LED35" gate="G$1" pin="C"/>
+<pinref part="LED53" gate="G$1" pin="C"/>
 <wire x1="210.82" y1="96.52" x2="220.98" y2="96.52" width="0.1524" layer="91"/>
 <wire x1="220.98" y1="96.52" x2="220.98" y2="99.06" width="0.1524" layer="91"/>
 <junction x="210.82" y="96.52"/>
-<pinref part="LED36" gate="G$1" pin="C"/>
+<pinref part="LED58" gate="G$1" pin="C"/>
 <wire x1="231.14" y1="99.06" x2="231.14" y2="96.52" width="0.1524" layer="91"/>
 <wire x1="231.14" y1="96.52" x2="220.98" y2="96.52" width="0.1524" layer="91"/>
 <junction x="220.98" y="96.52"/>
@@ -4774,21 +4774,21 @@ Source: http://www.osram.convergy.de/</description>
 <wire x1="210.82" y1="81.28" x2="210.82" y2="83.82" width="0.1524" layer="91"/>
 <junction x="200.66" y="81.28"/>
 <junction x="190.5" y="81.28"/>
+<pinref part="LED31" gate="G$1" pin="C"/>
+<pinref part="LED32" gate="G$1" pin="C"/>
+<pinref part="LED33" gate="G$1" pin="C"/>
+<pinref part="LED34" gate="G$1" pin="C"/>
 <pinref part="LED37" gate="G$1" pin="C"/>
 <pinref part="LED38" gate="G$1" pin="C"/>
 <pinref part="LED39" gate="G$1" pin="C"/>
 <pinref part="LED40" gate="G$1" pin="C"/>
-<pinref part="LED43" gate="G$1" pin="C"/>
-<pinref part="LED44" gate="G$1" pin="C"/>
-<pinref part="LED45" gate="G$1" pin="C"/>
-<pinref part="LED46" gate="G$1" pin="C"/>
-<pinref part="LED42" gate="G$1" pin="C"/>
-<pinref part="LED41" gate="G$1" pin="C"/>
-<pinref part="LED47" gate="G$1" pin="C"/>
+<pinref part="LED36" gate="G$1" pin="C"/>
+<pinref part="LED35" gate="G$1" pin="C"/>
+<pinref part="LED54" gate="G$1" pin="C"/>
 <wire x1="210.82" y1="81.28" x2="220.98" y2="81.28" width="0.1524" layer="91"/>
 <wire x1="220.98" y1="81.28" x2="220.98" y2="83.82" width="0.1524" layer="91"/>
 <junction x="210.82" y="81.28"/>
-<pinref part="LED48" gate="G$1" pin="C"/>
+<pinref part="LED59" gate="G$1" pin="C"/>
 <wire x1="231.14" y1="83.82" x2="231.14" y2="81.28" width="0.1524" layer="91"/>
 <wire x1="231.14" y1="81.28" x2="220.98" y2="81.28" width="0.1524" layer="91"/>
 <junction x="220.98" y="81.28"/>
@@ -4818,10 +4818,10 @@ Source: http://www.osram.convergy.de/</description>
 <wire x1="154.94" y1="93.98" x2="154.94" y2="78.74" width="0.1524" layer="91"/>
 <junction x="154.94" y="93.98"/>
 <pinref part="LED4" gate="G$1" pin="A"/>
-<pinref part="LED16" gate="G$1" pin="A"/>
-<pinref part="LED28" gate="G$1" pin="A"/>
-<pinref part="LED40" gate="G$1" pin="A"/>
-<pinref part="LED52" gate="G$1" pin="A"/>
+<pinref part="LED14" gate="G$1" pin="A"/>
+<pinref part="LED24" gate="G$1" pin="A"/>
+<pinref part="LED34" gate="G$1" pin="A"/>
+<pinref part="LED44" gate="G$1" pin="A"/>
 </segment>
 </net>
 <net name="$1" class="0">
@@ -4929,17 +4929,17 @@ Source: http://www.osram.convergy.de/</description>
 <wire x1="210.82" y1="66.04" x2="210.82" y2="68.58" width="0.1524" layer="91"/>
 <junction x="200.66" y="66.04"/>
 <junction x="190.5" y="66.04"/>
+<pinref part="LED41" gate="G$1" pin="C"/>
+<pinref part="LED42" gate="G$1" pin="C"/>
+<pinref part="LED43" gate="G$1" pin="C"/>
+<pinref part="LED44" gate="G$1" pin="C"/>
+<pinref part="LED45" gate="G$1" pin="C"/>
+<pinref part="LED46" gate="G$1" pin="C"/>
+<pinref part="LED47" gate="G$1" pin="C"/>
+<pinref part="LED48" gate="G$1" pin="C"/>
 <pinref part="LED49" gate="G$1" pin="C"/>
 <pinref part="LED50" gate="G$1" pin="C"/>
-<pinref part="LED51" gate="G$1" pin="C"/>
-<pinref part="LED52" gate="G$1" pin="C"/>
-<pinref part="LED53" gate="G$1" pin="C"/>
-<pinref part="LED54" gate="G$1" pin="C"/>
 <pinref part="LED55" gate="G$1" pin="C"/>
-<pinref part="LED56" gate="G$1" pin="C"/>
-<pinref part="LED57" gate="G$1" pin="C"/>
-<pinref part="LED58" gate="G$1" pin="C"/>
-<pinref part="LED59" gate="G$1" pin="C"/>
 <wire x1="210.82" y1="66.04" x2="220.98" y2="66.04" width="0.1524" layer="91"/>
 <wire x1="220.98" y1="66.04" x2="220.98" y2="68.58" width="0.1524" layer="91"/>
 <junction x="210.82" y="66.04"/>
@@ -4980,10 +4980,10 @@ Source: http://www.osram.convergy.de/</description>
 <junction x="165.1" y="109.22"/>
 <junction x="165.1" y="93.98"/>
 <pinref part="LED5" gate="G$1" pin="A"/>
-<pinref part="LED17" gate="G$1" pin="A"/>
-<pinref part="LED29" gate="G$1" pin="A"/>
-<pinref part="LED41" gate="G$1" pin="A"/>
-<pinref part="LED53" gate="G$1" pin="A"/>
+<pinref part="LED15" gate="G$1" pin="A"/>
+<pinref part="LED25" gate="G$1" pin="A"/>
+<pinref part="LED35" gate="G$1" pin="A"/>
+<pinref part="LED45" gate="G$1" pin="A"/>
 </segment>
 </net>
 <net name="COL6" class="0">
@@ -5010,10 +5010,10 @@ Source: http://www.osram.convergy.de/</description>
 <wire x1="170.18" y1="144.78" x2="175.26" y2="144.78" width="0.1524" layer="91"/>
 <label x="170.18" y="144.78" size="1.778" layer="95"/>
 <pinref part="LED6" gate="G$1" pin="A"/>
-<pinref part="LED18" gate="G$1" pin="A"/>
-<pinref part="LED30" gate="G$1" pin="A"/>
-<pinref part="LED42" gate="G$1" pin="A"/>
-<pinref part="LED54" gate="G$1" pin="A"/>
+<pinref part="LED16" gate="G$1" pin="A"/>
+<pinref part="LED26" gate="G$1" pin="A"/>
+<pinref part="LED36" gate="G$1" pin="A"/>
+<pinref part="LED46" gate="G$1" pin="A"/>
 </segment>
 </net>
 <net name="COL7" class="0">
@@ -5040,10 +5040,10 @@ Source: http://www.osram.convergy.de/</description>
 <wire x1="180.34" y1="144.78" x2="185.42" y2="144.78" width="0.1524" layer="91"/>
 <label x="180.34" y="144.78" size="1.778" layer="95"/>
 <pinref part="LED7" gate="G$1" pin="A"/>
-<pinref part="LED19" gate="G$1" pin="A"/>
-<pinref part="LED31" gate="G$1" pin="A"/>
-<pinref part="LED43" gate="G$1" pin="A"/>
-<pinref part="LED55" gate="G$1" pin="A"/>
+<pinref part="LED17" gate="G$1" pin="A"/>
+<pinref part="LED27" gate="G$1" pin="A"/>
+<pinref part="LED37" gate="G$1" pin="A"/>
+<pinref part="LED47" gate="G$1" pin="A"/>
 </segment>
 </net>
 <net name="COL8" class="0">
@@ -5070,10 +5070,10 @@ Source: http://www.osram.convergy.de/</description>
 <wire x1="190.5" y1="144.78" x2="195.58" y2="144.78" width="0.1524" layer="91"/>
 <label x="190.5" y="144.78" size="1.778" layer="95"/>
 <pinref part="LED8" gate="G$1" pin="A"/>
-<pinref part="LED20" gate="G$1" pin="A"/>
-<pinref part="LED32" gate="G$1" pin="A"/>
-<pinref part="LED44" gate="G$1" pin="A"/>
-<pinref part="LED56" gate="G$1" pin="A"/>
+<pinref part="LED18" gate="G$1" pin="A"/>
+<pinref part="LED28" gate="G$1" pin="A"/>
+<pinref part="LED38" gate="G$1" pin="A"/>
+<pinref part="LED48" gate="G$1" pin="A"/>
 </segment>
 </net>
 <net name="COL9" class="0">
@@ -5100,10 +5100,10 @@ Source: http://www.osram.convergy.de/</description>
 <wire x1="200.66" y1="144.78" x2="205.74" y2="144.78" width="0.1524" layer="91"/>
 <label x="200.66" y="144.78" size="1.778" layer="95"/>
 <pinref part="LED9" gate="G$1" pin="A"/>
-<pinref part="LED21" gate="G$1" pin="A"/>
-<pinref part="LED33" gate="G$1" pin="A"/>
-<pinref part="LED45" gate="G$1" pin="A"/>
-<pinref part="LED57" gate="G$1" pin="A"/>
+<pinref part="LED19" gate="G$1" pin="A"/>
+<pinref part="LED29" gate="G$1" pin="A"/>
+<pinref part="LED39" gate="G$1" pin="A"/>
+<pinref part="LED49" gate="G$1" pin="A"/>
 <wire x1="200.66" y1="144.78" x2="205.74" y2="144.78" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -5131,10 +5131,10 @@ Source: http://www.osram.convergy.de/</description>
 <wire x1="210.82" y1="144.78" x2="215.9" y2="144.78" width="0.1524" layer="91"/>
 <label x="210.82" y="144.78" size="1.778" layer="95"/>
 <pinref part="LED10" gate="G$1" pin="A"/>
-<pinref part="LED22" gate="G$1" pin="A"/>
-<pinref part="LED34" gate="G$1" pin="A"/>
-<pinref part="LED46" gate="G$1" pin="A"/>
-<pinref part="LED58" gate="G$1" pin="A"/>
+<pinref part="LED20" gate="G$1" pin="A"/>
+<pinref part="LED30" gate="G$1" pin="A"/>
+<pinref part="LED40" gate="G$1" pin="A"/>
+<pinref part="LED50" gate="G$1" pin="A"/>
 </segment>
 </net>
 <net name="COL11" class="0">
@@ -5143,14 +5143,14 @@ Source: http://www.osram.convergy.de/</description>
 <wire x1="226.06" y1="139.7" x2="226.06" y2="124.46" width="0.1524" layer="91"/>
 <wire x1="226.06" y1="124.46" x2="226.06" y2="109.22" width="0.1524" layer="91"/>
 <wire x1="226.06" y1="109.22" x2="226.06" y2="93.98" width="0.1524" layer="91"/>
-<pinref part="LED47" gate="G$1" pin="A"/>
+<pinref part="LED54" gate="G$1" pin="A"/>
 <wire x1="220.98" y1="91.44" x2="220.98" y2="93.98" width="0.1524" layer="91"/>
 <wire x1="220.98" y1="93.98" x2="226.06" y2="93.98" width="0.1524" layer="91"/>
-<pinref part="LED35" gate="G$1" pin="A"/>
+<pinref part="LED53" gate="G$1" pin="A"/>
 <wire x1="220.98" y1="106.68" x2="220.98" y2="109.22" width="0.1524" layer="91"/>
 <wire x1="220.98" y1="109.22" x2="226.06" y2="109.22" width="0.1524" layer="91"/>
 <junction x="226.06" y="109.22"/>
-<pinref part="LED23" gate="G$1" pin="A"/>
+<pinref part="LED52" gate="G$1" pin="A"/>
 <wire x1="220.98" y1="121.92" x2="220.98" y2="124.46" width="0.1524" layer="91"/>
 <wire x1="220.98" y1="124.46" x2="226.06" y2="124.46" width="0.1524" layer="91"/>
 <junction x="226.06" y="124.46"/>
@@ -5162,7 +5162,7 @@ Source: http://www.osram.convergy.de/</description>
 <wire x1="226.06" y1="93.98" x2="226.06" y2="78.74" width="0.1524" layer="91"/>
 <junction x="226.06" y="93.98"/>
 <wire x1="226.06" y1="78.74" x2="220.98" y2="78.74" width="0.1524" layer="91"/>
-<pinref part="LED59" gate="G$1" pin="A"/>
+<pinref part="LED55" gate="G$1" pin="A"/>
 <wire x1="220.98" y1="78.74" x2="220.98" y2="76.2" width="0.1524" layer="91"/>
 <label x="220.98" y="144.78" size="1.778" layer="95"/>
 </segment>
@@ -5174,7 +5174,7 @@ Source: http://www.osram.convergy.de/</description>
 <wire x1="231.14" y1="139.7" x2="236.22" y2="139.7" width="0.1524" layer="91"/>
 <wire x1="236.22" y1="139.7" x2="236.22" y2="144.78" width="0.1524" layer="91"/>
 <wire x1="236.22" y1="144.78" x2="231.14" y2="144.78" width="0.1524" layer="91"/>
-<pinref part="LED24" gate="G$1" pin="A"/>
+<pinref part="LED57" gate="G$1" pin="A"/>
 <wire x1="231.14" y1="121.92" x2="231.14" y2="124.46" width="0.1524" layer="91"/>
 <wire x1="231.14" y1="124.46" x2="236.22" y2="124.46" width="0.1524" layer="91"/>
 <wire x1="236.22" y1="124.46" x2="236.22" y2="139.7" width="0.1524" layer="91"/>
@@ -5182,9 +5182,9 @@ Source: http://www.osram.convergy.de/</description>
 <wire x1="236.22" y1="124.46" x2="236.22" y2="109.22" width="0.1524" layer="91"/>
 <junction x="236.22" y="124.46"/>
 <wire x1="236.22" y1="109.22" x2="231.14" y2="109.22" width="0.1524" layer="91"/>
-<pinref part="LED36" gate="G$1" pin="A"/>
+<pinref part="LED58" gate="G$1" pin="A"/>
 <wire x1="231.14" y1="109.22" x2="231.14" y2="106.68" width="0.1524" layer="91"/>
-<pinref part="LED48" gate="G$1" pin="A"/>
+<pinref part="LED59" gate="G$1" pin="A"/>
 <wire x1="231.14" y1="91.44" x2="231.14" y2="93.98" width="0.1524" layer="91"/>
 <wire x1="231.14" y1="93.98" x2="236.22" y2="93.98" width="0.1524" layer="91"/>
 <wire x1="236.22" y1="93.98" x2="236.22" y2="109.22" width="0.1524" layer="91"/>

@@ -4571,7 +4571,7 @@ Source: http://www.osram.convergy.de/</description>
 <pinref part="LED49" gate="G$1" pin="A"/>
 </segment>
 </net>
-<net name="COL2" class="0">
+<net name="1" class="0">
 <segment>
 <wire x1="134.62" y1="139.7" x2="134.62" y2="124.46" width="0.1524" layer="91"/>
 <wire x1="134.62" y1="124.46" x2="134.62" y2="109.22" width="0.1524" layer="91"/>
