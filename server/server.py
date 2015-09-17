@@ -1,5 +1,5 @@
 from weather_api_constants import weather_cmd_map
-from bottle import request, route, run
+from bottle import request, route, run, response
 from spark import SparkCoreConstants
 from user_constants import UserConstants
 import forecastio
@@ -27,7 +27,9 @@ def generate_return_str(current_weather):
 
 @route('/time')
 def time():
-    current_time = datetime.datetime.now().time()
+    hour_offset = int(request.query.hour_offset)if request.query.hour_offset != '' else 0
+    minute_offset = int(request.query.minute_offset) if request.query.minute_offset != '' else 0
+    current_time = datetime.datetime.utcnow() + datetime.timedelta(hours=hour_offset, minutes=minute_offset)
     return SparkCoreConstants.TimeStart + str(current_time.hour) + str(current_time.minute) + SparkCoreConstants.Delimiter
 
 
