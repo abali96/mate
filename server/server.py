@@ -35,8 +35,10 @@ def time():
 
 
 def run_server():
-    run(host='0.0.0.0', port=os.environ.get('PORT', 5000))
+    run(host='localhost', port=8080, server='gunicorn', workers=1)
 
 
 if __name__ == '__main__':
     run_server()
+
+app = bottle.default_app()
