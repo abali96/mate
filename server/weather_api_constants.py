@@ -1,7 +1,7 @@
 class WeatherTypes:
     ''' This class is used to collect all of the weather condition variations that are similar for our purposes. '''
     Clear = [r'clear']
-    Rain = [r'rain']
+    Rain = [r'rain', r'drizzle']
     Cloudy = [r'cloudy', r'fog']
     Snow = [r'snow', r'sleet', r'hail']
     Thunderstorm = [r'thunderstorm']
@@ -15,12 +15,6 @@ class WeatherReturnValues:
     Cloudy = "clouds"
     Snow = "snow"
     Thunderstorm = "lightning"
-
-
-class WeatherConstants:
-    ''' Hard code the latitude and longitude of weather we're serving for now '''
-    Lat = 43.4722850
-    Lng = -80.5448580
 
 weather_cmd_map = {
     tuple(WeatherTypes.Clear): WeatherReturnValues.Clear,

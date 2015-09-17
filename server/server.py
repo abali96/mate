@@ -1,6 +1,7 @@
-from weather_api_constants import weather_cmd_map, WeatherConstants
-from bottle import route, run, template
+from weather_api_constants import weather_cmd_map
+from bottle import request, route, run
 from spark import SparkCoreConstants
+from user_constants import UserConstants
 import forecastio
 import datetime
 import api_keys
@@ -9,7 +10,10 @@ import re
 
 @route('/weather')
 def weather():
-    forecast = forecastio.load_forecast(api_keys.ForecastIOApiKey, WeatherConstants.Lat, WeatherConstants.Lng)
+    try:
+        forecast = forecastio.load_forecast(api_keys.ForecastIOApiKey, request.query.lat, request.query.lng)
+    except:  # For now, catch all errors; we should just catch Bottle HTTPErrors
+        forecast = forecastio.load_forecast(api_keys.ForecastIOApiKey, UserConstants.DefaultLat, UserConstants.DefaultLng)
     current_weather = forecast.currently().__dict__["d"]["summary"]
     return SparkCoreConstants.WeatherStart + generate_return_str(current_weather) + SparkCoreConstants.Delimiter
 
@@ -18,6 +22,7 @@ def generate_return_str(current_weather):
     for weather_search_patterns, return_val in weather_cmd_map.items():
         if any(re.search(pattern, current_weather, re.IGNORECASE) for pattern in weather_search_patterns):
             return return_val
+    print(current_weather)
 
 
 @route('/time')
@@ -25,5 +30,10 @@ def time():
     current_time = datetime.datetime.now().time()
     return SparkCoreConstants.TimeStart + str(current_time.hour) + str(current_time.minute) + SparkCoreConstants.Delimiter
 
-print(weather())
-print(time())
+
+def run_server():
+    run(host='localhost', port=8080)
+
+
+if __name__ == '__main__':
+    run_server()
