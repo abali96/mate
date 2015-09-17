@@ -4,7 +4,6 @@ from spark import SparkCoreConstants
 from user_constants import UserConstants
 import forecastio
 import datetime
-import api_keys
 import re
 import os
 
