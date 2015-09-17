@@ -1,11 +1,12 @@
 from weather_api_constants import weather_cmd_map
-from bottle import request, route, run, response
+from bottle import request, route, run
 from spark import SparkCoreConstants
 from user_constants import UserConstants
 import forecastio
 import datetime
 import api_keys
 import re
+import os
 
 
 @route('/weather')
@@ -34,7 +35,7 @@ def time():
 
 
 def run_server():
-    run(host='localhost', port=8080)
+    run(host='0.0.0.0', port=os.environ.get('PORT', 5000))
 
 
 if __name__ == '__main__':
