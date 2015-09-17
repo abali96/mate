@@ -12,9 +12,9 @@ import os
 @route('/weather')
 def weather():
     try:
-        forecast = forecastio.load_forecast(api_keys.ForecastIOApiKey, request.query.lat, request.query.lng)
+        forecast = forecastio.load_forecast(os.environ["forecastio_key"], request.query.lat, request.query.lng)
     except:  # For now, catch all errors; we should just catch Bottle HTTPErrors
-        forecast = forecastio.load_forecast(api_keys.ForecastIOApiKey, UserConstants.DefaultLat, UserConstants.DefaultLng)
+        forecast = forecastio.load_forecast(os.environ["forecastio_key"], UserConstants.DefaultLat, UserConstants.DefaultLng)
     current_weather = forecast.currently().__dict__["d"]["summary"]
     return SparkCoreConstants.WeatherStart + generate_return_str(current_weather) + SparkCoreConstants.Delimiter
 
