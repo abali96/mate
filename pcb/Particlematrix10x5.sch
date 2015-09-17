@@ -4484,9 +4484,9 @@ http://www.ee.siue.edu/~alozows/library/datasheets/BFR96.pdf</description>
 <instance part="GND4" gate="1" x="101.6" y="73.66"/>
 <instance part="GND5" gate="1" x="101.6" y="58.42"/>
 <instance part="GND6" gate="1" x="200.66" y="193.04" rot="R90"/>
-<instance part="IC1" gate="P" x="68.58" y="157.48"/>
-<instance part="U$1" gate="G$1" x="241.3" y="254"/>
-<instance part="GND7" gate="1" x="218.44" y="276.86" rot="R270"/>
+<instance part="IC1" gate="P" x="205.74" y="261.62"/>
+<instance part="U$1" gate="G$1" x="104.14" y="289.56" rot="R180"/>
+<instance part="GND7" gate="1" x="124.46" y="266.7" rot="R90"/>
 </instances>
 <busses>
 </busses>
@@ -5123,7 +5123,6 @@ http://www.ee.siue.edu/~alozows/library/datasheets/BFR96.pdf</description>
 </segment>
 <segment>
 <pinref part="U$1" gate="G$1" pin="GND@2"/>
-<wire x1="223.52" y1="276.86" x2="220.98" y2="276.86" width="0.1524" layer="91"/>
 <pinref part="GND7" gate="1" pin="GND"/>
 </segment>
 <segment>
@@ -5152,30 +5151,28 @@ http://www.ee.siue.edu/~alozows/library/datasheets/BFR96.pdf</description>
 </net>
 <net name="N$6" class="0">
 <segment>
-<pinref part="IC1" gate="P" pin="VDD"/>
-<wire x1="68.58" y1="165.1" x2="68.58" y2="231.14" width="0.1524" layer="91"/>
-<wire x1="68.58" y1="231.14" x2="71.12" y2="233.68" width="0.1524" layer="91"/>
-<wire x1="71.12" y1="233.68" x2="175.26" y2="233.68" width="0.1524" layer="91"/>
-<wire x1="175.26" y1="233.68" x2="175.26" y2="264.16" width="0.1524" layer="91"/>
 <pinref part="PCB1" gate="G$1" pin="5V"/>
-<wire x1="175.26" y1="264.16" x2="193.04" y2="264.16" width="0.1524" layer="91"/>
+<wire x1="193.04" y1="264.16" x2="200.66" y2="264.16" width="0.1524" layer="91"/>
+<wire x1="200.66" y1="264.16" x2="200.66" y2="271.78" width="0.1524" layer="91"/>
+<pinref part="IC1" gate="P" pin="VDD"/>
+<wire x1="200.66" y1="271.78" x2="205.74" y2="271.78" width="0.1524" layer="91"/>
+<wire x1="205.74" y1="271.78" x2="205.74" y2="269.24" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$9" class="0">
 <segment>
-<pinref part="IC1" gate="P" pin="VSS"/>
-<wire x1="68.58" y1="149.86" x2="91.44" y2="149.86" width="0.1524" layer="91"/>
-<wire x1="91.44" y1="149.86" x2="91.44" y2="231.14" width="0.1524" layer="91"/>
-<wire x1="91.44" y1="231.14" x2="180.34" y2="231.14" width="0.1524" layer="91"/>
-<wire x1="180.34" y1="231.14" x2="180.34" y2="261.62" width="0.1524" layer="91"/>
 <pinref part="PCB1" gate="G$1" pin="GND.."/>
-<wire x1="180.34" y1="261.62" x2="193.04" y2="261.62" width="0.1524" layer="91"/>
+<wire x1="193.04" y1="261.62" x2="200.66" y2="261.62" width="0.1524" layer="91"/>
+<wire x1="200.66" y1="261.62" x2="200.66" y2="248.92" width="0.1524" layer="91"/>
+<pinref part="IC1" gate="P" pin="VSS"/>
+<wire x1="200.66" y1="248.92" x2="205.74" y2="248.92" width="0.1524" layer="91"/>
+<wire x1="205.74" y1="248.92" x2="205.74" y2="254" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$10" class="0">
 <segment>
 <pinref part="U$1" gate="G$1" pin="TX"/>
-<wire x1="223.52" y1="271.78" x2="129.54" y2="271.78" width="0.1524" layer="91"/>
+<wire x1="121.92" y1="271.78" x2="129.54" y2="271.78" width="0.1524" layer="91"/>
 <wire x1="129.54" y1="271.78" x2="129.54" y2="218.44" width="0.1524" layer="91"/>
 <pinref part="PCB1" gate="G$1" pin="18(TX1)"/>
 <wire x1="129.54" y1="218.44" x2="134.62" y2="218.44" width="0.1524" layer="91"/>

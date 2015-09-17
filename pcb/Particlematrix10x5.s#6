@@ -4890,26 +4890,7 @@ http://www.ee.siue.edu/~alozows/library/datasheets/BFR96.pdf</description>
 <segment>
 <wire x1="185.42" y1="139.7" x2="180.34" y2="139.7" width="0.1524" layer="91"/>
 <wire x1="180.34" y1="139.7" x2="180.34" y2="137.16" width="0.1524" layer="91"/>
-<wire x1="185.42" y1="124.46" x2="180.34" y2="124.46" width="0.1524" layer="91"/>
-<wire x1="180.34" y1="124.46" x2="180.34" y2="121.92" width="0.1524" layer="91"/>
-<wire x1="185.42" y1="139.7" x2="185.42" y2="124.46" width="0.1524" layer="91"/>
-<wire x1="185.42" y1="109.22" x2="180.34" y2="109.22" width="0.1524" layer="91"/>
-<wire x1="180.34" y1="109.22" x2="180.34" y2="106.68" width="0.1524" layer="91"/>
-<wire x1="185.42" y1="124.46" x2="185.42" y2="109.22" width="0.1524" layer="91"/>
-<wire x1="185.42" y1="93.98" x2="180.34" y2="93.98" width="0.1524" layer="91"/>
-<wire x1="180.34" y1="93.98" x2="180.34" y2="91.44" width="0.1524" layer="91"/>
-<wire x1="185.42" y1="109.22" x2="185.42" y2="93.98" width="0.1524" layer="91"/>
-<junction x="185.42" y="124.46"/>
-<junction x="185.42" y="109.22"/>
-<wire x1="185.42" y1="78.74" x2="180.34" y2="78.74" width="0.1524" layer="91"/>
-<wire x1="180.34" y1="78.74" x2="180.34" y2="76.2" width="0.1524" layer="91"/>
-<wire x1="185.42" y1="93.98" x2="185.42" y2="78.74" width="0.1524" layer="91"/>
-<junction x="185.42" y="93.98"/>
 <pinref part="LED7" gate="G$1" pin="A"/>
-<pinref part="LED19" gate="G$1" pin="A"/>
-<pinref part="LED31" gate="G$1" pin="A"/>
-<pinref part="LED43" gate="G$1" pin="A"/>
-<pinref part="LED55" gate="G$1" pin="A"/>
 <wire x1="185.674" y1="139.954" x2="185.42" y2="139.7" width="0.1524" layer="91"/>
 <junction x="185.42" y="139.7"/>
 <label x="185.42" y="142.24" size="1.778" layer="95" rot="R90"/>
@@ -5152,6 +5133,8 @@ http://www.ee.siue.edu/~alozows/library/datasheets/BFR96.pdf</description>
 </net>
 <net name="N$6" class="0">
 <segment>
+<pinref part="IC1" gate="P" pin="VDD"/>
+<wire x1="68.58" y1="165.1" x2="68.58" y2="231.14" width="0.1524" layer="91"/>
 <wire x1="68.58" y1="231.14" x2="71.12" y2="233.68" width="0.1524" layer="91"/>
 <wire x1="71.12" y1="233.68" x2="175.26" y2="233.68" width="0.1524" layer="91"/>
 <wire x1="175.26" y1="233.68" x2="175.26" y2="264.16" width="0.1524" layer="91"/>
@@ -5161,6 +5144,9 @@ http://www.ee.siue.edu/~alozows/library/datasheets/BFR96.pdf</description>
 </net>
 <net name="N$9" class="0">
 <segment>
+<pinref part="IC1" gate="P" pin="VSS"/>
+<wire x1="68.58" y1="149.86" x2="91.44" y2="149.86" width="0.1524" layer="91"/>
+<wire x1="91.44" y1="149.86" x2="91.44" y2="231.14" width="0.1524" layer="91"/>
 <wire x1="91.44" y1="231.14" x2="180.34" y2="231.14" width="0.1524" layer="91"/>
 <wire x1="180.34" y1="231.14" x2="180.34" y2="261.62" width="0.1524" layer="91"/>
 <pinref part="PCB1" gate="G$1" pin="GND.."/>
@@ -5271,8 +5257,23 @@ http://www.ee.siue.edu/~alozows/library/datasheets/BFR96.pdf</description>
 </net>
 <net name="N$11" class="0">
 <segment>
-<pinref part="IC1" gate="P" pin="VSS"/>
-<wire x1="68.58" y1="149.86" x2="91.44" y2="149.86" width="0.1524" layer="91"/>
+<pinref part="LED43" gate="G$1" pin="A"/>
+<wire x1="180.34" y1="93.98" x2="180.34" y2="91.44" width="0.1524" layer="91"/>
+<wire x1="185.42" y1="93.98" x2="180.34" y2="93.98" width="0.1524" layer="91"/>
+<pinref part="LED31" gate="G$1" pin="A"/>
+<wire x1="180.34" y1="109.22" x2="180.34" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="185.42" y1="109.22" x2="180.34" y2="109.22" width="0.1524" layer="91"/>
+<pinref part="LED19" gate="G$1" pin="A"/>
+<wire x1="180.34" y1="124.46" x2="180.34" y2="121.92" width="0.1524" layer="91"/>
+<wire x1="185.42" y1="124.46" x2="180.34" y2="124.46" width="0.1524" layer="91"/>
+<wire x1="185.42" y1="124.46" x2="185.42" y2="109.22" width="0.1524" layer="91"/>
+<junction x="185.42" y="109.22"/>
+<wire x1="185.42" y1="109.22" x2="185.42" y2="93.98" width="0.1524" layer="91"/>
+<junction x="185.42" y="93.98"/>
+<wire x1="185.42" y1="93.98" x2="185.42" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="185.42" y1="78.74" x2="180.34" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="180.34" y1="78.74" x2="180.34" y2="76.2" width="0.1524" layer="91"/>
+<pinref part="LED55" gate="G$1" pin="A"/>
 </segment>
 </net>
 </nets>

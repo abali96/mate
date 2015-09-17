@@ -4485,8 +4485,8 @@ http://www.ee.siue.edu/~alozows/library/datasheets/BFR96.pdf</description>
 <instance part="GND5" gate="1" x="101.6" y="58.42"/>
 <instance part="GND6" gate="1" x="200.66" y="193.04" rot="R90"/>
 <instance part="IC1" gate="P" x="68.58" y="157.48"/>
-<instance part="U$1" gate="G$1" x="241.3" y="254"/>
-<instance part="GND7" gate="1" x="218.44" y="276.86" rot="R270"/>
+<instance part="U$1" gate="G$1" x="104.14" y="289.56" rot="R180"/>
+<instance part="GND7" gate="1" x="124.46" y="266.7" rot="R90"/>
 </instances>
 <busses>
 </busses>
@@ -5123,7 +5123,6 @@ http://www.ee.siue.edu/~alozows/library/datasheets/BFR96.pdf</description>
 </segment>
 <segment>
 <pinref part="U$1" gate="G$1" pin="GND@2"/>
-<wire x1="223.52" y1="276.86" x2="220.98" y2="276.86" width="0.1524" layer="91"/>
 <pinref part="GND7" gate="1" pin="GND"/>
 </segment>
 <segment>
@@ -5175,7 +5174,7 @@ http://www.ee.siue.edu/~alozows/library/datasheets/BFR96.pdf</description>
 <net name="N$10" class="0">
 <segment>
 <pinref part="U$1" gate="G$1" pin="TX"/>
-<wire x1="223.52" y1="271.78" x2="129.54" y2="271.78" width="0.1524" layer="91"/>
+<wire x1="121.92" y1="271.78" x2="129.54" y2="271.78" width="0.1524" layer="91"/>
 <wire x1="129.54" y1="271.78" x2="129.54" y2="218.44" width="0.1524" layer="91"/>
 <pinref part="PCB1" gate="G$1" pin="18(TX1)"/>
 <wire x1="129.54" y1="218.44" x2="134.62" y2="218.44" width="0.1524" layer="91"/>
