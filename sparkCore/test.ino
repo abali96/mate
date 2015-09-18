@@ -13,12 +13,10 @@ void setup() {
 
 void loop() {
     // Get time data
-    Serial.println("Requesting Time!");
     Spark.publish("get_time");
     delay(10000);
 
     // Get time data
-    Serial.println("Requesting Weather!");
     Spark.publish("get_weather");
     delay(10000);
 }
@@ -35,10 +33,8 @@ void gotWeatherData(const char *name, const char *data) {
 
 void gotTimeData(const char *name, const char*data) {
     String str = String(data);
-    Serial.println("");
     for (int i = 0; i < str.length(); i++) {
       Serial.print(str[i]);
       Serial1.write(str[i]);
     }
-    Serial.println("");
 }

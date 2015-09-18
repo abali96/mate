@@ -35,6 +35,7 @@ void setup() {
   DDRA = B11111111;//set all of PORTA to output
   DDRC = B11111111;//set all of PORTC to output
   Serial.begin(9600);
+  Serial1.begin(9600);
   pinMode(20,OUTPUT);
   pinMode(21,OUTPUT);
   resetCounter();
@@ -46,11 +47,11 @@ void setup() {
 }
 
 void loop() {
-  int avail_count = Serial1.available();  
+  int avail_count = Serial1.available(); 
   String time_int = "0000";
   if (avail_count > 0) { // we have found something to read
-    Serial.println("here");
     char datatype = (char)Serial1.read();
+    Serial.println(datatype);
     if (datatype == 't') {
       Serial.println("here");
       time_int = (String)Serial1.parseInt();
@@ -58,15 +59,17 @@ void loop() {
       for (int i = 0; i = 4 - time_int.length(); i++) {
         time_int = "0" + time_int;
       }
+      Serial.println(time_int);
     } else if (datatype == 'w') {
       weather = (int)(char)(Serial1.read()) - 48;
+      Serial.println(weather);
     }
-    while (Serial1.available() == 1) {//the one byte left in serial1 buffer is 'a' delim token
+    while (Serial1.available() == 1) {
       if(mode){
-        displayString((int)time_int[0],(int)time_int[1],(int)time_int[2],(int)time_int[3]);
+        displayString((int)time_int[0] - 48,(int)time_int[1] - 48,(int)time_int[2] - 48,(int)time_int[3] - 48);
       }
       else{
-        displayWeather(weather);
+        displayWeather(0);
       }
     }
   }
@@ -80,11 +83,6 @@ void modeISR(){
 }
 
 void displayString(int a, int b, int c, int d){
-//  a -= 48;
-//  b -= 48;
-//  c -= 48;
-//  d -= 48;
-  
     for (y = 0; y < 5; y++) {
       digitalWrite(20, HIGH);
  
