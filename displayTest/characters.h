@@ -1,0 +1,16 @@
+//left half of LED matrix are pins 32-37
+//right half of LED matrix are pins 22-27
+#include "Arduino.h"
+static const struct Characters {
+  const byte space[5] = {B00000000, B00000000, B00000000, B00000000, B00000000};
+  const byte zero[5] = {B11100000, B10100000, B10100000, B10100000, B11100000};
+  const byte one[5] = {B01000000, B01000000, B01000000, B01000000, B01000000};
+  const byte two[5] = {B11100000, B00100000, B11100000, B10000000, B11100000};
+  const byte three[5] = {B11100000, B00100000, B11100000, B00100000, B11100000};
+  const byte four[5] = {B10100000, B10100000, B11100000, B00100000, B00100000};
+  const byte five[5] = {B11100000, B10000000, B11100000, B00100000, B11100000};
+  const byte six[5] = {B11100000, B10000000, B11100000, B10100000, B11100000};
+  const byte seven[5] = {B11100000, B00100000, B00100000, B00100000, B00100000};
+  const byte eight[5] = {B11100000, B10100000, B11100000, B10100000, B11100000};
+  const byte nine[5] = {B11100000, B10100000, B11100000, B00100000, B11100000};
+} characters;
