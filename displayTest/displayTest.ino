@@ -8,7 +8,6 @@ int x, y, i, weather;
 volatile bool mode; // 1 is time, 0 is weather
 String time = constants.defaultTime;
 const byte* numberMap[11] = {characters.zero, characters.one, characters.two, characters.three, characters.four, characters.five, characters.six, characters.seven, characters.eight, characters.nine, characters.space};
-const byte* weatherMap[14] = {weathers.cloudRight1, weathers.cloudLeft1, weathers.cloudRight2, weathers.cloudLeft2, weathers.sunLeft, weathers.sunRight, weathers.thunderLeft, weathers.thunderRight, weathers.snowLeft, weathers.snowRight};
 
 void setup() {
   DDRA = B11111111;  //set all of PORTA to output
@@ -36,7 +35,6 @@ void loop() {
       }
     } else if (datatype == delimiters.weatherStart) {
       weather = (int)(char)(Serial1.read()) - constants.charIntOffset;
-      Serial.println(weather);
     }
 
     while (Serial1.available() == constants.delimiterLength) {
@@ -75,7 +73,7 @@ void resetCounter() {
   }
 }
 
-void displayWeather(int weather){  // sun, cloud, rain, thunder, snow
+void displayWeather(int weather) {
     switch (weather) {
       case SunWeatherType:
         return sun();
@@ -90,28 +88,27 @@ void displayWeather(int weather){  // sun, cloud, rain, thunder, snow
     }
 }
 
-void displayImage(int a, int b, int t) {// a is right side, b is left side, t is time
-  for (i = 0; i < t; i++) {
-      for (y = 0; y < constants.numRows; y++) {
-        digitalWrite(pinMap.decadeCounterClockPin, HIGH);
-   
-        PORTA = (weatherMap[a][y] >> 2);//right side
-        PORTC = (weatherMap[b][y] >> 2);//left side
-        
-        delay(constants.clockPulseDelay);
-        digitalWrite(pinMap.decadeCounterClockPin, LOW);
-        delay(constants.clockPulseDelay);
-      }
-   }
+void displayImage(const byte left_side[8], const byte right_side[8]) {
+    for (y = 0; y < constants.numRows; y++) {
+      digitalWrite(pinMap.decadeCounterClockPin, HIGH);
+ 
+      PORTA = (right_side[y] >> 2);
+      PORTC = (left_side[y] >> 2); 
+      
+      delay(constants.clockPulseDelay);
+      digitalWrite(pinMap.decadeCounterClockPin, LOW);
+      delay(constants.clockPulseDelay);
+    }
 }
 
-void sun(){
-   displayImage(5, 4, 100);
+void sun() {
+   displayImage(weathers.sunLeft, weathers.sunRight);
 }
 
 void clouds(){
-   displayImage(0, 1, 100);
-   displayImage(2, 3, 100);
+  displayImage(weathers.cloudLeft1, weathers.cloudRight1);
+  delay(200);
+  displayImage(weathers.cloudLeft2, weathers.cloudRight2);
 }
 
 void rain(){
@@ -121,21 +118,21 @@ void rain(){
 }
 
 void raindrop(int i) {
- digitalWrite(i, HIGH);
-  for (y = 0; y < 10; y++) {
+  digitalWrite(i, HIGH);
+    for (y = 0; y < 10; y++) {
       digitalWrite(pinMap.decadeCounterClockPin, HIGH);    
-      delay(30);
+      delay(constants.rainDropDelay);
       digitalWrite(pinMap.decadeCounterClockPin, LOW);
-  }
+    }
   digitalWrite(i, LOW); 
 }
 
 void thunder(){
-    displayImage(7, 6, 100);  
+    displayImage(weathers.thunderLeft, weathers.thunderRight);  
 }
 
-void snow(){
-    displayImage(9, 8, 100);  
+void snow() {
+    displayImage(weathers.snowLeft, weathers.snowRight);
 }
 
 void clearMatrix() {
