@@ -30,7 +30,7 @@ def time():
     hour_offset = int(request.query.hour_offset)if request.query.hour_offset != '' else 0
     minute_offset = int(request.query.minute_offset) if request.query.minute_offset != '' else 0
     current_time = datetime.datetime.utcnow() + datetime.timedelta(hours=hour_offset, minutes=minute_offset)
-    return SparkCoreConstants.TimeStart + str(current_time.hour) + str(current_time.minute) + SparkCoreConstants.Delimiter
+    return SparkCoreConstants.TimeStart + "%02d" % current_time.hour + "%02d" % current_time.minute + SparkCoreConstants.Delimiter
 
 
 def run_server():
