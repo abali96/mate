@@ -107,8 +107,9 @@ void sun() {
 
 void clouds(){
   displayImage(weathers.cloudLeft1, weathers.cloudRight1);
-  delay(200);
+  delay(constants.cloudAnimateDelay);
   displayImage(weathers.cloudLeft2, weathers.cloudRight2);
+  delay(constants.cloudAnimateDelay);
 }
 
 void rain(){
