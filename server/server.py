@@ -15,7 +15,7 @@ def weather():
     except:  # For now, catch all errors; we should just catch Bottle HTTPErrors
         forecast = forecastio.load_forecast(os.environ["forecastio_key"], UserConstants.DefaultLat, UserConstants.DefaultLng)
     current_weather = forecast.currently().__dict__["d"]["summary"]
-    return SparkCoreConstants.WeatherStart + generate_return_str(current_weather) + SparkCoreConstants.Delimiter
+    return SparkCoreConstants.WeatherStart + str(generate_return_str(current_weather)) + SparkCoreConstants.Delimiter
 
 
 def generate_return_str(current_weather):
