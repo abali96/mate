@@ -8,13 +8,12 @@ class WeatherTypes:
 
 
 class WeatherReturnValues:
-    ''' This class maps weather conditions to constant terms
-        interpreted by the spark core. '''
-    Clear = "sunny"
-    Rain = "rain"
-    Cloudy = "clouds"
-    Snow = "snow"
-    Thunderstorm = "lightning"
+    ''' This class maps weather conditions to constant terms interpreted by the arduino. '''
+    Clear = 0
+    Cloudy = 1
+    Rain = 2
+    Thunderstorm = 3
+    Snow = 4
 
 weather_cmd_map = {
     tuple(WeatherTypes.Clear): WeatherReturnValues.Clear,
