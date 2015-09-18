@@ -1,7 +1,7 @@
 
 //left half of LED matrix are pins 32-37
 //right half of LED matrix are pins 22-27
-
+//#include "weather.h"
 //NUMBERS
 #define SPACE{B00000000,B00000000,B00000000,B00000000,B00000000}
 #define NUM0{B11100000,B10100000,B10100000,B10100000,B11100000}
@@ -20,14 +20,16 @@
 #define cloudRight2{B11110000,B11111000,B11110000,B00000000,B00000000}
 #define sunLeft{B00000100,B00001100,B00001100,B00001100,B00000100}
 #define sunRight{B11000000,B11100000,B11100000,B11100000,B11000000}
-//LIGHTNING LEFT AND RIGHT, TODO
-
+#define thunderLeft{B00000100,B00001100,B00011100,B00001100,B00011000}
+#define thunderRight{B10000000,B00000000,B10000000,B00000000,B00000000}
+#define snowLeft{B01000000,B11100000,B01001000,B00011100,B00001000}
+#define snowRight{B01000000,B11100000,B01001000,B00011100,B00001000}
 
 int x, y, i, weather; 
 volatile bool mode;// 1 is time, 0 is weather
 
 byte numberMap[11][5]={NUM0,NUM1,NUM2,NUM3,NUM4,NUM5,NUM6,NUM7,NUM8,NUM9,SPACE};
-byte weatherMap[14][5]={cloudRight1,cloudLeft1,cloudRight2,cloudLeft2,sunLeft,sunRight};
+byte weatherMap[14][5]={cloudRight1,cloudLeft1,cloudRight2,cloudLeft2,sunLeft,sunRight,thunderLeft,thunderRight,snowLeft,snowRight};
 
 void setup() {
   DDRA = B11111111;//set all of PORTA to output
@@ -166,9 +168,13 @@ void raindrop(int i){
   digitalWrite(i,LOW); 
 }
 
-void thunder(){}
+void thunder(){
+    displayImage(7,6,100);  
+}
 
-void snow(){}
+void snow(){
+    displayImage(9,8,100);  
+}
 
 void ledClear(){
   PORTA = B00000000;
