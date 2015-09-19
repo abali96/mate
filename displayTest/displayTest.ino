@@ -41,7 +41,7 @@ void loop() {
       if (mode)
         displayString((int)time[0] - constants.charIntOffset,(int)time[1] - constants.charIntOffset,(int)time[2] - constants.charIntOffset,(int)time[3] - constants.charIntOffset);
       else
-        displayWeather(weather);
+        displayWeather(2);
     }
   }
 }
@@ -56,7 +56,7 @@ void displayString(int a, int b, int c, int d) {
     for (y = 0; y < constants.numRows; y++) {
       digitalWrite(pinMap.decadeCounterClockPin, HIGH);
       PORTA = (numberMap[c][y] >> 2) + (numberMap[d][y] >> 5);  // right side of display
-      PORTC = (numberMap[a][y] >> 2) + (numberMap[b][y] >> 5);  // left side of display
+      PORTC = (numberMap[a][y] >> 2) + (numberMap[b][y] >> 5);  // l   eft side of display
       
       delay(constants.clockPulseDelay);
       digitalWrite(pinMap.decadeCounterClockPin, LOW);
@@ -80,7 +80,7 @@ void displayWeather(int weather) {
       case CloudWeatherType:
         return clouds();
       case RainWeatherType:
-        return thunder();
+        return rain();
       case ThunderWeatherType:
         return thunder();
       case SnowWeatherType:
@@ -107,15 +107,13 @@ void sun() {
 
 void clouds(){
   displayImage(weathers.cloudLeft1, weathers.cloudRight1);
-  delay(constants.cloudAnimateDelay);
-  displayImage(weathers.cloudLeft2, weathers.cloudRight2);
-  delay(constants.cloudAnimateDelay);
 }
 
 void rain(){
   clearMatrix();
   raindrop(random(22, 28));
   raindrop(random(32, 38));
+  delay(1);
 }
 
 void raindrop(int i) {

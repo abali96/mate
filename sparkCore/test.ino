@@ -32,6 +32,7 @@ void gotWeatherData(const char *name, const char *data) {
 }
 
 void gotTimeData(const char *name, const char*data) {
+    String str = String(data);
     for (int i = 0; i < str.length(); i++) {
       Serial.print(str[i]);
       Serial1.write(str[i]);

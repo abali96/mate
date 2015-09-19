@@ -18,5 +18,5 @@ static const struct Weathers {
 static const int SunWeatherType = 0;
 static const int CloudWeatherType = 1;
 static const int RainWeatherType = 2;
-static const int ThunderWeatherType = 4;
-static const int SnowWeatherType = 5;
+static const int ThunderWeatherType = 3;
+static const int SnowWeatherType = 4;
