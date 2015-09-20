@@ -9,6 +9,33 @@ bool* ascii_map[255];
 volatile bool mode; // 1 is time, 0 is weather
 String time = constants.defaultTime;
 
+void printBits(byte myByte){
+ for(byte mask = 0x80; mask; mask >>= 1){
+   if(mask  & myByte)
+       Serial.print('1');
+   else
+       Serial.print('0');
+ }
+ Serial.println("");
+}
+
+unsigned char reverse(unsigned char b) {
+   b = (b & 0xF0) >> 4 | (b & 0x0F) << 4;
+   b = (b & 0xCC) >> 2 | (b & 0x33) << 2;
+   b = (b & 0xAA) >> 1 | (b & 0x55) << 1;
+   return b;
+}
+
+// http://stackoverflow.com/questions/8461126/creating-a-byte-out-of-8-bool-values-and-vice-versa
+unsigned char ToByte(bool b[8])
+{
+    unsigned char c = 0;
+    for (int i=0; i < 8; ++i)
+        if (b[i])
+            c |= 1 << i;
+    return c;
+}
+
 void setup() {
   ascii_map[48] = characters.zero;
   ascii_map[49] = characters.one;
@@ -35,9 +62,8 @@ void setup() {
 }
 
 void loop() {
-  String str = "123";
+  String str = "12";
   displayString(str);
-  delay(3000);
 }
 
 void modeISR(){
@@ -47,7 +73,7 @@ void modeISR(){
 }
 
 void displayString(String data) {
-  bool display_map[5][9];
+  bool display_map[5][12] = {0};
   
   for (int char_idx = 0; char_idx < data.length(); char_idx++) {  // Here, concatenate the characters into one large array
     int ascii_idx = (int)(data[char_idx]);
@@ -57,36 +83,29 @@ void displayString(String data) {
       }
     }
   }
-
-//  Serial.println("hereeee");
-//  for (int i = 0; i < 5; i++) {
-//    for (int j = 0; j < 3*3; j++) {
-//      delay(500);
-//      Serial.print(display_map[i][j]);
-//    }
-//    Serial.println("");
-//  }
-//  
-    for (y = 0; y < constants.numRows; y++) {
+  while (true) {
+    for (int row_idx = 0; row_idx < constants.numRows; row_idx++) {
+      bool port_c_bools[8] = {0}, port_a_bools[8] = {0};
+      for (int count = 0; count < 6; count++) {  // Get the first six characters of the row
+        port_c_bools[count] = display_map[row_idx][count];
+      }
+      for (int count = 0; count < 6; count++) {  // Get the 6th to 12th characters of the row
+        port_a_bools[count] = display_map[row_idx][count + 6];
+      }
       digitalWrite(pinMap.decadeCounterClockPin, HIGH);
-      
-      PORTA = (display_map[y] >> 2);  // right side of display
-      PORTC = (ascii_map[y] >> 2);  // left side of display
-      
-      delay(constants.clockPulseDelay);
+//      delay(constants.clockPulseDelay);
+      PORTC = reverse(ToByte(port_c_bools)) >> 2;
+      PORTA = reverse(ToByte(port_a_bools)) >> 2;
+      bool first_val = display_map[row_idx][0];
+      for (int display_map_idx = 1; display_map_idx < 12; display_map_idx++) {
+       display_map[row_idx][display_map_idx - 1] = display_map[row_idx][display_map_idx];
+      }
+      display_map[row_idx][12 - 1] = first_val;
       digitalWrite(pinMap.decadeCounterClockPin, LOW);
       delay(constants.clockPulseDelay);
     }
-    
-//    for (y = 0; y < constants.numRows; y++) {
-//      digitalWrite(pinMap.decadeCounterClockPin, HIGH);
-//      PORTA = (ascii_map[c][y] >> 2) + (ascii_map[d][y] >> 5);  // right side of display
-//      PORTC = (ascii_map[a][y] >> 2) + (ascii_map[b][y] >> 5);  // l   eft side of display
-//      
-//      delay(constants.clockPulseDelay);
-//      digitalWrite(pinMap.decadeCounterClockPin, LOW);
-//      delay(constants.clockPulseDelay);
-//    }
+    delay(30);
+  }
 }
 
 void resetCounter() {
