@@ -30,13 +30,41 @@ unsigned char reverse(unsigned char b) {
 unsigned char ToByte(bool b[8])
 {
     unsigned char c = 0;
-    for (int i=0; i < 8; ++i)
+    for (int i = 0; i < 8; ++i)
         if (b[i])
             c |= 1 << i;
     return c;
 }
 
 void setup() {
+  ascii_map[65] = characters.A;
+  ascii_map[66] = characters.B;
+  ascii_map[67] = characters.C;
+  ascii_map[68] = characters.D;
+  ascii_map[69] = characters.E;
+  ascii_map[70] = characters.F;
+  ascii_map[71] = characters.G;
+  ascii_map[72] = characters.H;
+  ascii_map[73] = characters.I;  
+  ascii_map[74] = characters.J;
+  ascii_map[75] = characters.K;
+  ascii_map[76] = characters.L;
+  ascii_map[77] = characters.M;
+  ascii_map[78] = characters.N;
+  ascii_map[79] = characters.O;
+  ascii_map[80] = characters.P;
+  ascii_map[81] = characters.Q;
+  ascii_map[82] = characters.R;
+  ascii_map[83] = characters.S;
+  ascii_map[84] = characters.T;
+  ascii_map[85] = characters.U;
+  ascii_map[86] = characters.V;
+  ascii_map[87] = characters.W;
+  ascii_map[88] = characters.X;
+  ascii_map[89] = characters.Y;
+  ascii_map[90] = characters.Z;
+
+  ascii_map[32] = characters.space;
   ascii_map[48] = characters.zero;
   ascii_map[49] = characters.one;
   ascii_map[50] = characters.two;
@@ -62,7 +90,7 @@ void setup() {
 }
 
 void loop() {
-  String str = "12";
+  String str = "XYZ";
   displayString(str);
 }
 
@@ -73,20 +101,19 @@ void modeISR(){
 }
 
 void displayString(String data) {
-  bool display_map[5][12] = {0};
+  bool display_map[constants.numRows][12] = {0};  // This 12 should actually be related to how many characters
   
   for (int char_idx = 0; char_idx < data.length(); char_idx++) {  // Here, concatenate the characters into one large array
     int ascii_idx = (int)(data[char_idx]);
     for (int row_idx = 0; row_idx < constants.numRows; row_idx++) {
-      for (int col_idx = 0; col_idx < 3; col_idx++) {
-        display_map[row_idx][col_idx + char_idx * 3] = ascii_map[ascii_idx][col_idx + row_idx * 3];
+      for (int col_idx = 0; col_idx < constants.charWidth; col_idx++) {
+        display_map[row_idx][col_idx + char_idx * constants.charWidth] = ascii_map[ascii_idx][col_idx + row_idx * constants.charWidth];
       }
     }
   }
   
-  
-  bool port_c_bools_list[12][5][8] = {0}, port_a_bools_list[12][5][8] = {0};
-  for (int permutation_num = 0; permutation_num < 12; permutation_num++) {
+  bool port_c_bools_list[constants.numCols][constants.numRows][constants.byteLength] = {0}, port_a_bools_list[constants.numCols][constants.numRows][constants.byteLength] = {0}; // Calculate all scrolling permutations
+  for (int permutation_num = 0; permutation_num < constants.numCols; permutation_num++) {
     for (int row_idx = 0; row_idx < constants.numRows; row_idx++) {
       for (int count = 0; count < 6; count++) {  // Get the first six characters of the row
         port_c_bools_list[permutation_num][row_idx][count] = display_map[row_idx][count];
@@ -95,14 +122,16 @@ void displayString(String data) {
         port_a_bools_list[permutation_num][row_idx][count] = display_map[row_idx][count + 6];
       }
       bool first_val = display_map[row_idx][0];
-      for (int display_map_idx = 1; display_map_idx < 12; display_map_idx++) {
+      for (int display_map_idx = 1; display_map_idx < constants.numCols; display_map_idx++) {
        display_map[row_idx][display_map_idx - 1] = display_map[row_idx][display_map_idx];
       }
-      display_map[row_idx][12 - 1] = first_val;
+      display_map[row_idx][constants.numCols - 1] = first_val;
     }
   }
-  for (int permutation_num = 0; permutation_num < 12; permutation_num++) {
-    for (int time = 0; time < 17; time++) { 
+  
+  
+  for (int permutation_num = 0; permutation_num < constants.numCols; permutation_num++) {
+    for (int time = 0; time < constants.scrollTimeDelta; time++) {
        for (int row_idx = 0; row_idx < constants.numRows; row_idx++) {
           digitalWrite(pinMap.decadeCounterClockPin, HIGH);
           PORTC = reverse(ToByte(port_c_bools_list[permutation_num][row_idx])) >> 2;
