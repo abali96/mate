@@ -83,28 +83,34 @@ void displayString(String data) {
       }
     }
   }
-  while (true) {
+  
+  
+  bool port_c_bools_list[12][5][8] = {0}, port_a_bools_list[12][5][8] = {0};
+  for (int permutation_num = 0; permutation_num < 12; permutation_num++) {
     for (int row_idx = 0; row_idx < constants.numRows; row_idx++) {
-      bool port_c_bools[8] = {0}, port_a_bools[8] = {0};
       for (int count = 0; count < 6; count++) {  // Get the first six characters of the row
-        port_c_bools[count] = display_map[row_idx][count];
+        port_c_bools_list[permutation_num][row_idx][count] = display_map[row_idx][count];
       }
       for (int count = 0; count < 6; count++) {  // Get the 6th to 12th characters of the row
-        port_a_bools[count] = display_map[row_idx][count + 6];
+        port_a_bools_list[permutation_num][row_idx][count] = display_map[row_idx][count + 6];
       }
-      digitalWrite(pinMap.decadeCounterClockPin, HIGH);
-//      delay(constants.clockPulseDelay);
-      PORTC = reverse(ToByte(port_c_bools)) >> 2;
-      PORTA = reverse(ToByte(port_a_bools)) >> 2;
       bool first_val = display_map[row_idx][0];
       for (int display_map_idx = 1; display_map_idx < 12; display_map_idx++) {
        display_map[row_idx][display_map_idx - 1] = display_map[row_idx][display_map_idx];
       }
       display_map[row_idx][12 - 1] = first_val;
-      digitalWrite(pinMap.decadeCounterClockPin, LOW);
-      delay(constants.clockPulseDelay);
     }
-    delay(30);
+  }
+  for (int permutation_num = 0; permutation_num < 12; permutation_num++) {
+    for (int time = 0; time < 17; time++) { 
+       for (int row_idx = 0; row_idx < constants.numRows; row_idx++) {
+          digitalWrite(pinMap.decadeCounterClockPin, HIGH);
+          PORTC = reverse(ToByte(port_c_bools_list[permutation_num][row_idx])) >> 2;
+          PORTA = reverse(ToByte(port_a_bools_list[permutation_num][row_idx])) >> 2;
+          digitalWrite(pinMap.decadeCounterClockPin, LOW);
+          delay(constants.clockPulseDelay);
+       }
+    }
   }
 }
 
