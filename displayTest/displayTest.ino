@@ -5,21 +5,21 @@
 #include "constants.h"
 
 int x, y, i, weather; 
-bool ascii_map[255];
+bool* ascii_map[255];
 volatile bool mode; // 1 is time, 0 is weather
 String time = constants.defaultTime;
 
 void setup() {
-//  ascii_map[48] = characters.zero;
-//  ascii_map[49] = characters.one;
-//  ascii_map[50] = characters.two;
-//  ascii_map[51] = characters.three;
-//  ascii_map[52] = characters.four;
-//  ascii_map[53] = characters.five;
-//  ascii_map[54] = characters.six;
-//  ascii_map[55] = characters.seven;
-//  ascii_map[56] = characters.eight;
-//  ascii_map[57] = characters.nine;
+  ascii_map[48] = characters.zero;
+  ascii_map[49] = characters.one;
+  ascii_map[50] = characters.two;
+  ascii_map[51] = characters.three;
+  ascii_map[52] = characters.four;
+  ascii_map[53] = characters.five;
+  ascii_map[54] = characters.six;
+  ascii_map[55] = characters.seven;
+  ascii_map[56] = characters.eight;
+  ascii_map[57] = characters.nine;
   DDRA = B11111111;  //set all of PORTA to output
   DDRC = B11111111;  //set all of PORTC to output
   Serial.begin(constants.baudRate);  // debugging (printing) serial
@@ -35,9 +35,9 @@ void setup() {
 }
 
 void loop() {
-  String str = "11111";
+  String str = "123";
   displayString(str);
-  delay(5000);
+  delay(3000);
 }
 
 void modeISR(){
@@ -47,24 +47,37 @@ void modeISR(){
 }
 
 void displayString(String data) {
-  bool display_map[999][5];
+  bool display_map[5][9];
   
-  for (int char_idx = 0; char_idx < data.length(); char_idx++) {
-    for (int row = 0; row < constants.numRows; row++) {
-      for (int col = 0; col < constants.numCols; col++) {
-        int ascii_idx = (int)(data[char_idx]);
-        Serial.println(ascii_map[ascii_idx]);
-        delay(500);
+  for (int char_idx = 0; char_idx < data.length(); char_idx++) {  // Here, concatenate the characters into one large array
+    int ascii_idx = (int)(data[char_idx]);
+    for (int row_idx = 0; row_idx < constants.numRows; row_idx++) {
+      for (int col_idx = 0; col_idx < 3; col_idx++) {
+        display_map[row_idx][col_idx + char_idx * 3] = ascii_map[ascii_idx][col_idx + row_idx * 3];
       }
     }
   }
-//  for (int i = 0; i < 999; i++) {
-//    for (int j = 0; j < 5; j++) {
+
+//  Serial.println("hereeee");
+//  for (int i = 0; i < 5; i++) {
+//    for (int j = 0; j < 3*3; j++) {
+//      delay(500);
 //      Serial.print(display_map[i][j]);
 //    }
 //    Serial.println("");
 //  }
-  
+//  
+    for (y = 0; y < constants.numRows; y++) {
+      digitalWrite(pinMap.decadeCounterClockPin, HIGH);
+      
+      PORTA = (display_map[y] >> 2);  // right side of display
+      PORTC = (ascii_map[y] >> 2);  // left side of display
+      
+      delay(constants.clockPulseDelay);
+      digitalWrite(pinMap.decadeCounterClockPin, LOW);
+      delay(constants.clockPulseDelay);
+    }
+    
 //    for (y = 0; y < constants.numRows; y++) {
 //      digitalWrite(pinMap.decadeCounterClockPin, HIGH);
 //      PORTA = (ascii_map[c][y] >> 2) + (ascii_map[d][y] >> 5);  // right side of display
@@ -106,7 +119,7 @@ void displayImage(const byte left_side[8], const byte right_side[8]) {
  
       PORTA = (right_side[y] >> 2);
       PORTC = (left_side[y] >> 2); 
-      
+     
       delay(constants.clockPulseDelay);
       digitalWrite(pinMap.decadeCounterClockPin, LOW);
       delay(constants.clockPulseDelay);
