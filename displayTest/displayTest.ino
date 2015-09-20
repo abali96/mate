@@ -5,11 +5,21 @@
 #include "constants.h"
 
 int x, y, i, weather; 
+bool ascii_map[255];
 volatile bool mode; // 1 is time, 0 is weather
 String time = constants.defaultTime;
-const byte* numberMap[11] = {characters.zero, characters.one, characters.two, characters.three, characters.four, characters.five, characters.six, characters.seven, characters.eight, characters.nine, characters.space};
 
 void setup() {
+//  ascii_map[48] = characters.zero;
+//  ascii_map[49] = characters.one;
+//  ascii_map[50] = characters.two;
+//  ascii_map[51] = characters.three;
+//  ascii_map[52] = characters.four;
+//  ascii_map[53] = characters.five;
+//  ascii_map[54] = characters.six;
+//  ascii_map[55] = characters.seven;
+//  ascii_map[56] = characters.eight;
+//  ascii_map[57] = characters.nine;
   DDRA = B11111111;  //set all of PORTA to output
   DDRC = B11111111;  //set all of PORTC to output
   Serial.begin(constants.baudRate);  // debugging (printing) serial
@@ -25,25 +35,9 @@ void setup() {
 }
 
 void loop() {
-  if (Serial1.available() > 0) { // we have found something to read
-    char datatype = (char)Serial1.read();  // The first character will be the type of data.
-    
-    if (datatype == delimiters.timeStart) {
-      time = (String)Serial1.parseInt();
-      for (int i = 0; i = constants.timeStringLength - time.length(); i++) {  // Since parseInt will omit leading zeros, we must re-patch them on. (4 is the number of digits we desire in time string)
-        time = "0" + time;
-      }
-    } else if (datatype == delimiters.weatherStart) {
-      weather = (int)(char)(Serial1.read()) - constants.charIntOffset;
-    }
-
-    while (Serial1.available() == constants.delimiterLength) {
-      if (mode)
-        displayString((int)time[0] - constants.charIntOffset,(int)time[1] - constants.charIntOffset,(int)time[2] - constants.charIntOffset,(int)time[3] - constants.charIntOffset);
-      else
-        displayWeather(2);
-    }
-  }
+  String str = "11111";
+  displayString(str);
+  delay(5000);
 }
 
 void modeISR(){
@@ -52,16 +46,34 @@ void modeISR(){
   attachInterrupt(digitalPinToInterrupt(pinMap.buttonInterruptPin), modeISR, RISING);
 }
 
-void displayString(int a, int b, int c, int d) {
-    for (y = 0; y < constants.numRows; y++) {
-      digitalWrite(pinMap.decadeCounterClockPin, HIGH);
-      PORTA = (numberMap[c][y] >> 2) + (numberMap[d][y] >> 5);  // right side of display
-      PORTC = (numberMap[a][y] >> 2) + (numberMap[b][y] >> 5);  // l   eft side of display
-      
-      delay(constants.clockPulseDelay);
-      digitalWrite(pinMap.decadeCounterClockPin, LOW);
-      delay(constants.clockPulseDelay);
+void displayString(String data) {
+  bool display_map[999][5];
+  
+  for (int char_idx = 0; char_idx < data.length(); char_idx++) {
+    for (int row = 0; row < constants.numRows; row++) {
+      for (int col = 0; col < constants.numCols; col++) {
+        int ascii_idx = (int)(data[char_idx]);
+        Serial.println(ascii_map[ascii_idx]);
+        delay(500);
+      }
     }
+  }
+//  for (int i = 0; i < 999; i++) {
+//    for (int j = 0; j < 5; j++) {
+//      Serial.print(display_map[i][j]);
+//    }
+//    Serial.println("");
+//  }
+  
+//    for (y = 0; y < constants.numRows; y++) {
+//      digitalWrite(pinMap.decadeCounterClockPin, HIGH);
+//      PORTA = (ascii_map[c][y] >> 2) + (ascii_map[d][y] >> 5);  // right side of display
+//      PORTC = (ascii_map[a][y] >> 2) + (ascii_map[b][y] >> 5);  // l   eft side of display
+//      
+//      delay(constants.clockPulseDelay);
+//      digitalWrite(pinMap.decadeCounterClockPin, LOW);
+//      delay(constants.clockPulseDelay);
+//    }
 }
 
 void resetCounter() {
