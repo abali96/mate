@@ -10,7 +10,7 @@ static const struct Constants {
    static const int numCols = 12;
    static const int byteLength = 8;
    static const int charWidth = 3;
-   static const int scrollTimeDelta = 15; 
+   static const int scrollTimeDelta = 50; 
    static const int timeStringLength = 4;  // We want time to consist of two hour digits and two minute digits.
    static const int delimiterLength = 1;  // We send a delimiter 'A' right now between data strings.
    

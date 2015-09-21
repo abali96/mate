@@ -96,7 +96,7 @@ void setup() {
 }
 
 void loop() {
-  String str = "HI?";
+  String str = "APPLE123";
   displayString(str);
 }
 
@@ -107,8 +107,20 @@ void modeISR(){
 }
 
 void displayString(String data) {
-  bool display_map[constants.numRows][12] = {0};  // This 12 should actually be related to how many characters
+  bool** display_map = 0;
+  const int numColsUsed = data.length() * constants.charWidth;
+  int numPermutations = max(numColsUsed, constants.numCols);
+  if (display_map != 0) {
+    for (int i = 0; i < numPermutations; i++)
+      delete [] display_map[i];
+     delete [] display_map;
+  }
+  display_map = new bool*[constants.numRows];
+  for(int i = 0; i < constants.numRows; ++i)
+      display_map[i] = new bool[numPermutations] {0};
   
+  
+
   for (int char_idx = 0; char_idx < data.length(); char_idx++) {  // Here, concatenate the characters into one large array
     int ascii_idx = (int)(data[char_idx]);
     for (int row_idx = 0; row_idx < constants.numRows; row_idx++) {
@@ -118,8 +130,24 @@ void displayString(String data) {
     }
   }
   
-  bool port_c_bools_list[constants.numCols][constants.numRows][constants.byteLength] = {0}, port_a_bools_list[constants.numCols][constants.numRows][constants.byteLength] = {0}; // Calculate all scrolling permutations
-  for (int permutation_num = 0; permutation_num < constants.numCols; permutation_num++) {
+  bool*** port_c_bools_list = 0;
+  bool*** port_a_bools_list = 0;
+  port_a_bools_list = new bool**[numPermutations];
+  port_c_bools_list = new bool**[numPermutations];
+  for (int l = 0; l < numPermutations; l++) {
+    port_a_bools_list[l] = new bool*[constants.numRows];
+    port_c_bools_list[l] = new bool*[constants.numRows];
+    for (int j = 0; j < constants.numRows; j++) {
+      port_a_bools_list[l][j] = new bool[constants.byteLength] {0};
+      port_c_bools_list[l][j] = new bool[constants.byteLength] {0};
+      for (int k = 0; k < constants.byteLength; k++) {
+        port_c_bools_list[l][j][k] = 0;
+        port_a_bools_list[l][j][k] = 0;
+      }
+    }
+  }
+  
+  for (int permutation_num = 0; permutation_num < numPermutations; permutation_num++) {
     for (int row_idx = 0; row_idx < constants.numRows; row_idx++) {
       for (int count = 0; count < 6; count++) {  // Get the first six characters of the row
         port_c_bools_list[permutation_num][row_idx][count] = display_map[row_idx][count];
@@ -128,15 +156,15 @@ void displayString(String data) {
         port_a_bools_list[permutation_num][row_idx][count] = display_map[row_idx][count + 6];
       }
       bool first_val = display_map[row_idx][0];
-      for (int display_map_idx = 1; display_map_idx < constants.numCols; display_map_idx++) {
+      for (int display_map_idx = 1; display_map_idx < numPermutations; display_map_idx++) {
        display_map[row_idx][display_map_idx - 1] = display_map[row_idx][display_map_idx];
       }
-      display_map[row_idx][constants.numCols - 1] = first_val;
+      display_map[row_idx][numPermutations - 1] = first_val;
     }
   }
   
   
-  for (int permutation_num = 0; permutation_num < constants.numCols; permutation_num++) {
+  for (int permutation_num = 0; permutation_num < numPermutations; permutation_num++) {
     for (int time = 0; time < constants.scrollTimeDelta; time++) {
        for (int row_idx = 0; row_idx < constants.numRows; row_idx++) {
           digitalWrite(pinMap.decadeCounterClockPin, HIGH);
@@ -147,6 +175,20 @@ void displayString(String data) {
        }
     }
   }
+   for (int i = 0; i < constants.numRows; ++i)
+    delete [] display_map[i];
+  delete [] display_map;
+  
+  for (int i = 0; i < numPermutations; i++) {
+    for (int j = 0; j < constants.numRows; j++) {
+      delete [] port_a_bools_list[i][j];
+      delete [] port_c_bools_list[i][j];
+    }
+    delete [] port_a_bools_list[i];
+    delete [] port_c_bools_list[i];
+  }
+  delete [] port_a_bools_list;
+  delete [] port_c_bools_list;
 }
 
 void resetCounter() {
