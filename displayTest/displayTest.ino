@@ -75,6 +75,12 @@ void setup() {
   ascii_map[55] = characters.seven;
   ascii_map[56] = characters.eight;
   ascii_map[57] = characters.nine;
+  
+  ascii_map[46] = characters.decimal;
+  ascii_map[33] = characters.exclamation;
+  ascii_map[63] = characters.question_mark;
+  
+  
   DDRA = B11111111;  //set all of PORTA to output
   DDRC = B11111111;  //set all of PORTC to output
   Serial.begin(constants.baudRate);  // debugging (printing) serial
@@ -90,7 +96,7 @@ void setup() {
 }
 
 void loop() {
-  String str = "XYZ";
+  String str = "HI?";
   displayString(str);
 }
 
