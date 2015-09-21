@@ -96,7 +96,7 @@ void setup() {
 }
 
 void loop() {
-  String str = "APPLE123";
+  String str = " BA 1";
   displayString(str);
 }
 
@@ -107,6 +107,10 @@ void modeISR(){
 }
 
 void displayString(String data) {
+  while (data.length() < 4) {
+    data = data + " ";
+  }
+  
   bool** display_map = 0;
   const int numColsUsed = data.length() * constants.charWidth;
   int numPermutations = max(numColsUsed, constants.numCols);
