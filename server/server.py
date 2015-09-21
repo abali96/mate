@@ -37,7 +37,12 @@ def time():
 
 @route('/stocks')
 def stock():
-    return SparkCoreConstants.StockStart + request.query.share + " " + str(Share(request.query.share).get_price()) + " " + SparkCoreConstants.Delimiter
+    return_str = SparkCoreConstants.StockStart
+    for key, share_name in request.query.items():
+        return_str += share_name + "  " + str(Share(share_name).get_price()) + "  "
+
+    return_str += SparkCoreConstants.Delimiter
+    return return_str
 
 
 def run_server():
