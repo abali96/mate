@@ -96,8 +96,26 @@ void setup() {
 }
 
 void loop() {
-  String str = " BA 1";
-  displayString(str);
+    if (Serial1.available() > 0) { // we have found something to read
+    char datatype = (char)Serial1.read();  // The first character will be the type of data.
+    Serial.println(datatype);
+    if (datatype == delimiters.timeStart) {
+      time = (String)Serial1.parseInt();
+      for (int i = 0; i = constants.timeStringLength - time.length(); i++) {  // Since parseInt will omit leading zeros, we must re-patch them on. (4 is the number of digits we desire in time string)
+        time = "0" + time;
+      }
+    } else if (datatype == delimiters.weatherStart) {
+      weather = (int)(char)(Serial1.read()) - constants.charIntOffset;
+    }
+
+    while (Serial1.available() == constants.delimiterLength) {
+      if (mode) {
+        Serial.println(time);
+        displayString(time, false);
+      } else
+        displayWeather(weather);
+    }
+  }
 }
 
 void modeISR(){
@@ -106,8 +124,8 @@ void modeISR(){
   attachInterrupt(digitalPinToInterrupt(pinMap.buttonInterruptPin), modeISR, RISING);
 }
 
-void displayString(String data) {
-  while (data.length() < 4) {
+void displayString(String data, bool scroll) {
+  while (data.length() < 4) {  // patch the data to be at least 4 chars long for nicers scrolling
     data = data + " ";
   }
   
@@ -159,11 +177,13 @@ void displayString(String data) {
       for (int count = 0; count < 6; count++) {  // Get the 6th to 12th characters of the row
         port_a_bools_list[permutation_num][row_idx][count] = display_map[row_idx][count + 6];
       }
-      bool first_val = display_map[row_idx][0];
-      for (int display_map_idx = 1; display_map_idx < numPermutations; display_map_idx++) {
-       display_map[row_idx][display_map_idx - 1] = display_map[row_idx][display_map_idx];
+      if (scroll) {
+        bool first_val = display_map[row_idx][0];
+        for (int display_map_idx = 1; display_map_idx < numPermutations; display_map_idx++) {
+         display_map[row_idx][display_map_idx - 1] = display_map[row_idx][display_map_idx];
+        }
+        display_map[row_idx][numPermutations - 1] = first_val;
       }
-      display_map[row_idx][numPermutations - 1] = first_val;
     }
   }
   
