@@ -35,7 +35,7 @@ def time():
     return SparkCoreConstants.TimeStart + "%02d" % current_time.hour + "%02d" % current_time.minute + SparkCoreConstants.Delimiter
 
 
-@route('/stock')
+@route('/stocks')
 def stock():
     return SparkCoreConstants.StockStart + str(Share(request.query.share).get_price()) + SparkCoreConstants.Delimiter
 
