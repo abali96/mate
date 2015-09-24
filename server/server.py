@@ -39,7 +39,7 @@ def time():
 def stock():
     return_str = SparkCoreConstants.StockStart
     for key, share_name in request.query.items():
-        return_str += share_name + "  " + str(Share(share_name).get_price()) + "  "
+        return_str += share_name + "  " + str(Share(share_name).get_change()) + "  "
 
     return_str += SparkCoreConstants.Delimiter
     return return_str
