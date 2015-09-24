@@ -1,3 +1,4 @@
 server/api_keys.py
 server/venv/
 server/*.pyc
+venv/
