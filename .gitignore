@@ -1,4 +1,8 @@
+.DS_Store
 server/api_keys.py
 server/venv/
 server/*.pyc
-venv/
+venv
+server/.DS_Store
+server/__pycache__
+server/venv
