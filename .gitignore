@@ -3,6 +3,8 @@ server/api_keys.py
 server/venv/
 server/*.pyc
 venv
+pcb/mate.b#*
+pcb/mate.s#*
 server/.DS_Store
 server/__pycache__
 server/venv
